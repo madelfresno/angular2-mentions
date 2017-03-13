@@ -56,6 +56,8 @@ export class MentionDirective {
 
   @Input() callbackFn: Function;
 
+  @Input() scope: any;
+
   @Input() mentionSelect: (selection: string) => (string) = (selection: string) => selection;
 
   setIframe(iframe: HTMLIFrameElement) {
@@ -107,7 +109,7 @@ export class MentionDirective {
       this.startPos = pos;
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
       this.stopSearch = false;
-      if (this.asyncSearch) {
+      if (this.asyncSearch && val.length > 1) {
         this.searchAsync(this.callbackFn, val);
       }
       this.showSearchList(nativeElement);
@@ -207,7 +209,7 @@ export class MentionDirective {
   searchAsync(callbackFn: Function, token: string) {
     //let data: string[] = callBack();
     //this.items = callbackFn();
-    let data: any = callbackFn(token).call();
+    let data: any = callbackFn(token);
     this.items = data.value;
   }
 }
