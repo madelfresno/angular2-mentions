@@ -109,7 +109,7 @@ export class MentionDirective {
       this.startPos = pos;
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
       this.stopSearch = false;
-      if (this.asyncSearch && val.length > 1) {
+      if (this.asyncSearch/* && val.length > 1*/) {
         this.searchAsync(this.callbackFn, val);
       }
       this.showSearchList(nativeElement);
