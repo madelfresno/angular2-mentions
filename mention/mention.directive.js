@@ -95,7 +95,7 @@ var MentionDirective = (function () {
             this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
             this.stopSearch = false;
             if (this.asyncSearch /* && val.length > 1*/) {
-                this.searchAsync(this.callbackFn, 'ap');
+                this.searchAsync(this.callbackFn, val.substring(this.startPos, pos));
             }
             this.showSearchList(nativeElement);
         }
@@ -155,6 +155,7 @@ var MentionDirective = (function () {
                     if (event.keyCode !== KEY_BACKSPACE) {
                         mention += charPressed;
                     }
+                    this.searchAsync(this.callbackFn, mention.substring(1));
                     var regEx_1 = new RegExp("^" + mention.substring(1), "i");
                     var matches = this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
                     this.searchList.items = matches;
