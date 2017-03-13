@@ -171,10 +171,13 @@ export class MentionDirective {
             mention += charPressed;
           }
           this.searchAsync(this.callbackFn, mention.substring(1));
-          let regEx = new RegExp("^" + mention.substring(1), "i");
-          let matches = this.items.filter(e => e.name.match(regEx) != null);
-          
-          this.searchList.items = matches;
+          let regEx = new RegExp("^" + mention.substring(1), "i");          
+          //let matches = this.items.filter(e => e.name.match(regEx) != null);
+          let matches = [];
+          if (this.items) {
+              matches = this.items.filter(e => e.name.match(regEx) != null);
+              this.searchList.items = matches;
+          }                     
           this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
         }
       }
