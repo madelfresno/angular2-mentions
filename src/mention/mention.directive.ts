@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
-
+import { Observable } from 'rxjs';
 import { MentionListComponent } from './mention-list.component';
 import { getValue, insertValue, getCaretPosition, setCaretPosition } from './mention-utils';
 
@@ -29,7 +29,8 @@ const KEY_2 = 50;
   }
 })
 export class MentionDirective {
-  items: string[];
+  //items: string[];
+  items: any;
   startPos: number;
   startNode;
   searchList: MentionListComponent;
@@ -43,9 +44,17 @@ export class MentionDirective {
 
   @Input() triggerChar: string = "@";
 
-  @Input() set mention(items:string []){
+  @Input() asyncSearch: boolean = false;
+
+  /*@Input() set mention(items:string []){
     this.items = items.sort();
+  }*/
+
+  @Input() set mention(items: any){
+    this.items = items;
   }
+
+  @Input() callbackFn: Function;
 
   @Input() mentionSelect: (selection: string) => (string) = (selection: string) => selection;
 
@@ -98,6 +107,9 @@ export class MentionDirective {
       this.startPos = pos;
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
       this.stopSearch = false;
+      if (this.asyncSearch) {
+        this.searchAsync(this.callbackFn, val);
+      }
       this.showSearchList(nativeElement);
     }
     else if (this.startPos >= 0 && !this.stopSearch) {
@@ -160,7 +172,8 @@ export class MentionDirective {
             mention += charPressed;
           }
           let regEx = new RegExp("^" + mention.substring(1), "i");
-          let matches = this.items.filter(e => e.match(regEx) != null);
+          let matches = this.items.filter(e => e.name.match(regEx) != null);
+          
           this.searchList.items = matches;
           this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
         }
@@ -189,5 +202,12 @@ export class MentionDirective {
       this.searchList.position(nativeElement, this.iframe);
       window.setTimeout(() => this.searchList.resetScroll());
     }
+  }
+
+  searchAsync(callbackFn: Function, token: string) {
+    //let data: string[] = callBack();
+    //this.items = callbackFn();
+    let data: any = callbackFn(token);
+    this.items = data.value;
   }
 }
