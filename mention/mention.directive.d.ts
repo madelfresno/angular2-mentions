@@ -21,6 +21,7 @@ export declare class MentionDirective {
     asyncSearch: boolean;
     mention: any;
     callbackFn: Function;
+    scope: any;
     mentionSelect: (selection: string) => (string);
     setIframe(iframe: HTMLIFrameElement): void;
     stopEvent(event: any): void;

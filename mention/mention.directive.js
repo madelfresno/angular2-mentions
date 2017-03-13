@@ -94,7 +94,7 @@ var MentionDirective = (function () {
             this.startPos = pos;
             this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
             this.stopSearch = false;
-            if (this.asyncSearch) {
+            if (this.asyncSearch && val.length > 1) {
                 this.searchAsync(this.callbackFn, val);
             }
             this.showSearchList(nativeElement);
@@ -189,7 +189,7 @@ var MentionDirective = (function () {
     MentionDirective.prototype.searchAsync = function (callbackFn, token) {
         //let data: string[] = callBack();
         //this.items = callbackFn();
-        var data = callbackFn(token).call();
+        var data = callbackFn(token);
         this.items = data.value;
     };
     return MentionDirective;
@@ -211,6 +211,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Function)
 ], MentionDirective.prototype, "callbackFn", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], MentionDirective.prototype, "scope", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Function)
