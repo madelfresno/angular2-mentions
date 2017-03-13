@@ -10,7 +10,7 @@
   "main": "src/mention/index.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmacfarlane/angular2-mentions.git"
+    "url": "https://github.com/madelfresno/angular2-mentions.git"
   },
   "author": "Dan MacFarlane",
   "license": "MIT",
