@@ -207,7 +207,7 @@ export class MentionDirective {
   searchAsync(callbackFn: Function, token: string) {
     //let data: string[] = callBack();
     //this.items = callbackFn();
-    let data: any = callbackFn(token);
+    let data: any = callbackFn.call(token);
     this.items = data.value;
   }
 }

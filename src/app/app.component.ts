@@ -17,7 +17,7 @@ export class AppComponent {
 
   getItemsAsObservable(token: string = ''): Observable<any> {
     let query = new RegExp(token, 'ig');
- console.log(token);
+    console.log(token);
     let statesComplex: any[] = [
     {id: 1, name: 'Alabama', region: 'South'}, {id: 2, name: 'Alaska', region: 'West'}, {
       id: 3,
