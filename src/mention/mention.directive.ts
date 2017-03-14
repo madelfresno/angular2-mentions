@@ -214,7 +214,7 @@ export class MentionDirective {
     //this.items = callbackFn();
     let data: Observable<any> = callbackFn(token);
     data.subscribe(
-      (response) => {console.log(response);},
+      (response) => {this.items = response;},
       (response) => {console.log(response);},
       () => {}
     );

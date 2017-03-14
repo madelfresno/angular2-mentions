@@ -191,10 +191,11 @@ var MentionDirective = (function () {
         }
     };
     MentionDirective.prototype.searchAsync = function (callbackFn, token) {
+        var _this = this;
         //let data: string[] = callBack();
         //this.items = callbackFn();
         var data = callbackFn(token);
-        data.subscribe(function (response) { console.log(response); }, function (response) { console.log(response); }, function () { });
+        data.subscribe(function (response) { _this.items = response; }, function (response) { console.log(response); }, function () { });
     };
     return MentionDirective;
 }());
