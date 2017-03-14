@@ -160,8 +160,9 @@ var MentionDirective = (function () {
                         //matches = this.items.filter(e => e.name.match(regEx) != null);
                         //matches = this.items.filter(e => {console.log(e);});
                         console.log(this.items);
+                        matches = this.items;
                         //this.searchList.items = matches;
-                        this.searchList.items = this.items;
+                        this.searchList.items = matches;
                     }
                     this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
                 }
