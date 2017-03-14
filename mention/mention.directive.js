@@ -153,15 +153,12 @@ var MentionDirective = (function () {
                         mention += charPressed;
                     }
                     this.searchAsync(this.callbackFn, mention.substring(1));
-                    var regEx = new RegExp("^" + mention.substring(1), "i");
+                    var regEx_1 = new RegExp("^" + mention.substring(1), "i");
                     //let matches = this.items.filter(e => e.name.match(regEx) != null);
                     var matches = [];
                     if (this.items) {
-                        //matches = this.items.filter(e => e.name.match(regEx) != null);
-                        //matches = this.items.filter(e => {console.log(e);});
-                        console.log(this.items);
-                        matches = this.items;
-                        //this.searchList.items = matches;
+                        matches = this.items.filter(function (e) { return e.firstName.match(regEx_1) != null; });
+                        //matches = this.items.filter(e => {console.log(e);});              
                         this.searchList.items = matches;
                     }
                     this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
