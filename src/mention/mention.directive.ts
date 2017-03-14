@@ -177,6 +177,7 @@ export class MentionDirective {
           if (this.items) {
               //matches = this.items.filter(e => e.name.match(regEx) != null);
               matches = this.items.filter(e => e.firstName.match(regEx) != null);
+              console.log(this.items, matches);
               this.searchList.items = matches;
           }                     
           this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
@@ -213,7 +214,7 @@ export class MentionDirective {
     //this.items = callbackFn();
     let data: Observable<any> = callbackFn(token);
     data.subscribe(
-      (response) => {console.log(response);this.items = response;},
+      (response) => {console.log(response);},
       (response) => {console.log(response);},
       () => {}
     );
