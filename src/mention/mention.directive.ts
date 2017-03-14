@@ -174,9 +174,9 @@ export class MentionDirective {
           let regEx = new RegExp("^" + mention.substring(1), "i");          
           //let matches = this.items.filter(e => e.name.match(regEx) != null);
           let matches = [];
-          if (this.items) {
+          if (this.items.lenght > 0) {
               //matches = this.items.filter(e => e.name.match(regEx) != null);
-              matches = this.items.filter(e => e.firstName.match(regEx) != null);
+              matches = this.items.filter(e => {console.log(e);});
               console.log(this.items, matches);
               this.searchList.items = matches;
           }                     
@@ -215,7 +215,7 @@ export class MentionDirective {
     let data: Observable<any> = callbackFn(token);
     data.subscribe(
       (response) => {this.items = response;},
-      (response) => {console.log(response);},
+      (response) => {},
       () => {}
     );
   }
