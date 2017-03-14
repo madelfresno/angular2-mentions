@@ -66,6 +66,7 @@ var MentionDirective = (function () {
         }
     };
     MentionDirective.prototype.keyHandler = function (event, nativeElement) {
+        var _this = this;
         if (nativeElement === void 0) { nativeElement = this._element.nativeElement; }
         var val = mention_utils_1.getValue(nativeElement);
         var pos = mention_utils_1.getCaretPosition(nativeElement, this.iframe);
@@ -148,20 +149,22 @@ var MentionDirective = (function () {
                 }
                 else {
                     // update search
-                    var mention = val.substring(this.startPos, pos);
+                    var mention_1 = val.substring(this.startPos, pos);
                     if (event.keyCode !== KEY_BACKSPACE) {
-                        mention += charPressed;
+                        mention_1 += charPressed;
                     }
-                    this.searchAsync(this.callbackFn, mention.substring(1));
-                    var regEx_1 = new RegExp("^" + mention.substring(1), "i");
-                    //let matches = this.items.filter(e => e.name.match(regEx) != null);
-                    var matches = [];
-                    //if (this.items) {
-                    matches = this.items.filter(function (e) { return e.firstName.match(regEx_1) != null; });
-                    //matches = this.items.filter(e => {console.log(e);});              
-                    this.searchList.items = matches;
-                    //}                     
-                    this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+                    this.searchAsync(this.callbackFn, mention_1.substring(1)).subscribe(function (response) {
+                        _this.items = response;
+                        var regEx = new RegExp("^" + mention_1.substring(1), "i");
+                        //let matches = this.items.filter(e => e.name.match(regEx) != null);
+                        var matches = [];
+                        //if (this.items) {
+                        matches = _this.items.filter(function (e) { return e.firstName.match(regEx) != null; });
+                        //matches = this.items.filter(e => {console.log(e);});              
+                        _this.searchList.items = matches;
+                        //}                     
+                        _this.searchList.hidden = matches.length == 0 || pos <= _this.startPos;
+                    });
                 }
             }
         }
@@ -190,11 +193,15 @@ var MentionDirective = (function () {
         }
     };
     MentionDirective.prototype.searchAsync = function (callbackFn, token) {
-        var _this = this;
         //let data: string[] = callBack();
         //this.items = callbackFn();
-        var data = callbackFn(token);
-        data.subscribe(function (response) { _this.items = response; }, function (response) { }, function () { });
+        /*let data: Observable<any> = callbackFn(token);
+        data.subscribe(
+          (response) => {this.items = response;},
+          (response) => {},
+          () => {}
+        );*/
+        return callbackFn(token);
     };
     return MentionDirective;
 }());

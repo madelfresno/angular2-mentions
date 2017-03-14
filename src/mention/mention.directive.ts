@@ -170,16 +170,20 @@ export class MentionDirective {
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
           }
-          this.searchAsync(this.callbackFn, mention.substring(1));
-          let regEx = new RegExp("^" + mention.substring(1), "i");          
-          //let matches = this.items.filter(e => e.name.match(regEx) != null);
-          let matches = [];
-          //if (this.items) {
-              matches = this.items.filter(e => e.firstName.match(regEx) != null);
-              //matches = this.items.filter(e => {console.log(e);});              
-              this.searchList.items = matches;
-          //}                     
-          this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+          this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
+            (response) => {
+              this.items = response;
+              let regEx = new RegExp("^" + mention.substring(1), "i");          
+              //let matches = this.items.filter(e => e.name.match(regEx) != null);
+              let matches = [];
+              //if (this.items) {
+                  matches = this.items.filter(e => e.firstName.match(regEx) != null);
+                  //matches = this.items.filter(e => {console.log(e);});              
+                  this.searchList.items = matches;
+              //}                     
+              this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+            }
+          );
         }
       }
     }
@@ -208,14 +212,15 @@ export class MentionDirective {
     }
   }
 
-  searchAsync(callbackFn: Function, token: string) {
+  searchAsync(callbackFn: Function, token: string): Observable<any> {
     //let data: string[] = callBack();
     //this.items = callbackFn();
-    let data: Observable<any> = callbackFn(token);
+    /*let data: Observable<any> = callbackFn(token);
     data.subscribe(
       (response) => {this.items = response;},
       (response) => {},
       () => {}
-    );
+    );*/
+    return callbackFn(token);
   }
 }

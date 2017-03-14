@@ -1,4 +1,5 @@
 import { ElementRef, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
+import { Observable } from 'rxjs';
 import { MentionListComponent } from './mention-list.component';
 /**
  * Angular 2 Mentions.
@@ -28,5 +29,5 @@ export declare class MentionDirective {
     blurHandler(event: any): void;
     keyHandler(event: any, nativeElement?: HTMLInputElement): boolean;
     showSearchList(nativeElement: HTMLInputElement): void;
-    searchAsync(callbackFn: Function, token: string): void;
+    searchAsync(callbackFn: Function, token: string): Observable<any>;
 }
