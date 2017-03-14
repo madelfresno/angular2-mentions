@@ -97,6 +97,7 @@ var MentionDirective = (function () {
             this.stopSearch = false;
             this.searchAsync(this.callbackFn, '').subscribe(function (response) {
                 _this.items = response;
+                _this.searchList.items = _this.items;
                 _this.showSearchList(nativeElement);
             });
         }

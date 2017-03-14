@@ -112,6 +112,7 @@ export class MentionDirective {
       this.searchAsync(this.callbackFn, '').subscribe(
         (response) => {
           this.items = response;
+          this.searchList.items = this.items;
           this.showSearchList(nativeElement);
         }
       );      
