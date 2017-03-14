@@ -210,11 +210,11 @@ export class MentionDirective {
   searchAsync(callbackFn: Function, token: string) {
     //let data: string[] = callBack();
     //this.items = callbackFn();
-    let data: Observable<any> = callbackFn(token)
-    .subscribe(
+    let data: Observable<any> = callbackFn(token);
+    data.subscribe(
+      (response) => {console.log(response);this.items = response;},
       (response) => {console.log(response);},
-      (response) => {console.log(response);},
-      (response) => {console.log(response);}      
-    );    
+      () => {}
+    );
   }
 }
