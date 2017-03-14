@@ -174,11 +174,12 @@ export class MentionDirective {
           let regEx = new RegExp("^" + mention.substring(1), "i");          
           //let matches = this.items.filter(e => e.name.match(regEx) != null);
           let matches = [];
-          if (this.items.lenght > 0) {
+          if (this.items) {
               //matches = this.items.filter(e => e.name.match(regEx) != null);
               matches = this.items.filter(e => {console.log(e);});
               console.log(this.items, matches);
-              this.searchList.items = matches;
+              //this.searchList.items = matches;
+              this.searchList.items = this.items;
           }                     
           this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
         }
