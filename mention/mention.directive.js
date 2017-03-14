@@ -157,7 +157,8 @@ var MentionDirective = (function () {
                     //let matches = this.items.filter(e => e.name.match(regEx) != null);
                     var matches = [];
                     if (this.items) {
-                        matches = this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
+                        //matches = this.items.filter(e => e.name.match(regEx) != null);
+                        matches = this.items.filter(function (e) { return e.firstName.match(regEx_1) != null; });
                         this.searchList.items = matches;
                     }
                     this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
