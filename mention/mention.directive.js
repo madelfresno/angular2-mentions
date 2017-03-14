@@ -159,6 +159,7 @@ var MentionDirective = (function () {
                     if (this.items) {
                         //matches = this.items.filter(e => e.name.match(regEx) != null);
                         matches = this.items.filter(function (e) { return e.firstName.match(regEx_1) != null; });
+                        console.log(this.items, matches);
                         this.searchList.items = matches;
                     }
                     this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
@@ -190,11 +191,10 @@ var MentionDirective = (function () {
         }
     };
     MentionDirective.prototype.searchAsync = function (callbackFn, token) {
-        var _this = this;
         //let data: string[] = callBack();
         //this.items = callbackFn();
         var data = callbackFn(token);
-        data.subscribe(function (response) { console.log(response); _this.items = response; }, function (response) { console.log(response); }, function () { });
+        data.subscribe(function (response) { console.log(response); }, function (response) { console.log(response); }, function () { });
     };
     return MentionDirective;
 }());
