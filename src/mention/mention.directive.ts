@@ -111,6 +111,7 @@ export class MentionDirective {
       this.stopSearch = false;
       this.searchAsync(this.callbackFn, '').subscribe(
         (response) => {
+          console.log(response);
           this.items = response;
           this.searchList.items = this.items;
           this.showSearchList(nativeElement);
@@ -178,6 +179,7 @@ export class MentionDirective {
           }
           this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
             (response) => {
+              console.log(response);
               this.items = response;
               let regEx = new RegExp("^" + mention.substring(1), "i");          
               //let matches = this.items.filter(e => e.name.match(regEx) != null);
