@@ -43,28 +43,28 @@ import { getCaretCoordinates } from './caret-coords';
       }
     `],
     template: `
-    <ul class="dropdown-menu scrollable-menu" #list [hidden]="hidden">
+    <ul class="dropdown-menu scrollable-menu typeahead-mention" #list [hidden]="hidden">
         <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">            
           <a href="#" class="dropdown-cnt-img-profile">
             <div class="cnt-img-profile">
-                <img class="profile-clip" width="100" height="100" clip-path="url(#svgPath)" xmlns:xlink="http://www.w3.org/1999/xlink" src="{{item.img}}">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" style="" class="svg">
-                  <defs>
-                      <style>
-                          .svg-border {
-                              fill: none;
-                          }
-                      </style>
-                      <clipPath id="svgPath">
-                          <path class="cls-1" d="M81.784,82.488,56.656,96.994c-5.778,3.333-15.225,3.333-21.027,0L10.5,82.488C4.723,79.155,0,70.955,0,64.29V35.278c0-6.665,4.723-14.865,10.5-18.2L35.629,2.575c5.778-3.333,15.225-3.333,21.027,0L81.784,17.08c5.778,3.333,10.5,11.533,10.5,18.2V64.29C92.285,70.955,87.562,79.155,81.784,82.488Z" width="100" height="100"></path>
-                      </clipPath>
-                  </defs>
-                </svg>
+              <img class="profile-clip" width="100" height="100" clip-path="url(#svgPath)" xmlns:xlink="http://www.w3.org/1999/xlink" src="{{item.img}}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" style="" class="svg">
+                <defs>
+                  <style>
+                    .svg-border {
+                      fill: none;
+                    }
+                  </style>
+                  <clipPath id="svgPath">
+                    <path class="cls-1" d="M81.784,82.488,56.656,96.994c-5.778,3.333-15.225,3.333-21.027,0L10.5,82.488C4.723,79.155,0,70.955,0,64.29V35.278c0-6.665,4.723-14.865,10.5-18.2L35.629,2.575c5.778-3.333,15.225-3.333,21.027,0L81.784,17.08c5.778,3.333,10.5,11.533,10.5,18.2V64.29C92.285,70.955,87.562,79.155,81.784,82.488Z" width="100" height="100"></path>
+                  </clipPath>
+                </defs>
+              </svg>
             </div>
           </a>
-          <a href="#" class="item-info" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">
+          <a href="#" class="item-info">
             {{item.name}}
-          </a>          
+          </a>
         </li>
     </ul>
     `
