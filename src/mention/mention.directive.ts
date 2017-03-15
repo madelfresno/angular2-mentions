@@ -110,10 +110,8 @@ export class MentionDirective {
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
       this.stopSearch = false;
       this.searchAsync(this.callbackFn, '').subscribe(
-        (response) => {
-          console.log(response);
-          this.items = response;
-          //this.searchList.items = this.items;
+        (response) => {          
+          this.items = response;          
           this.showSearchList(nativeElement);
         }
       );      
@@ -196,7 +194,7 @@ export class MentionDirective {
     if (this.searchList == null) {
       let componentFactory = this._componentResolver.resolveComponentFactory(MentionListComponent);
       let componentRef = this._viewContainerRef.createComponent(componentFactory);
-      this.searchList = componentRef.instance
+      this.searchList = componentRef.instance;
       this.searchList.items = this.items;
       this.searchList.hidden = false;
       this.searchList.position(nativeElement, this.iframe);
@@ -216,14 +214,6 @@ export class MentionDirective {
   }
 
   searchAsync(callbackFn: Function, token: string): Observable<any> {
-    //let data: string[] = callBack();
-    //this.items = callbackFn();
-    /*let data: Observable<any> = callbackFn(token);
-    data.subscribe(
-      (response) => {this.items = response;},
-      (response) => {},
-      () => {}
-    );*/
     return callbackFn(token);
   }
 }

@@ -96,9 +96,7 @@ var MentionDirective = (function () {
             this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
             this.stopSearch = false;
             this.searchAsync(this.callbackFn, '').subscribe(function (response) {
-                console.log(response);
                 _this.items = response;
-                //this.searchList.items = this.items;
                 _this.showSearchList(nativeElement);
             });
         }
@@ -194,14 +192,6 @@ var MentionDirective = (function () {
         }
     };
     MentionDirective.prototype.searchAsync = function (callbackFn, token) {
-        //let data: string[] = callBack();
-        //this.items = callbackFn();
-        /*let data: Observable<any> = callbackFn(token);
-        data.subscribe(
-          (response) => {this.items = response;},
-          (response) => {},
-          () => {}
-        );*/
         return callbackFn(token);
     };
     return MentionDirective;
