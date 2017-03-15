@@ -31,12 +31,19 @@ import { getCaretCoordinates } from './caret-coords';
     </ul>
     `*/
     styles: [`
+      .scrollable-menu {
+        display: block;
+        /*height: auto;
+        max-height: 300px;
+        overflow: auto;*/
+      }
+    `,`
       [hidden] {
         display: none;
       }
     `],
     template: `
-    <ul class="dropdown-menu" #list [hidden]="hidden">
+    <ul class="dropdown-menu scrollable-menu" #list [hidden]="hidden">
         <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">            
           <a href="#" class="dropdown-cnt-img-profile">
             <div class="cnt-img-profile">
