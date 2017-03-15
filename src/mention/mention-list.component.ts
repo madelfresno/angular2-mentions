@@ -26,6 +26,7 @@ import { getCaretCoordinates } from './caret-coords';
   template: `
     <ul class="dropdown-menu scrollable-menu" #list [hidden]="hidden">
         <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">
+            <img class="profile-clip" width="100" height="100"  clip-path="url(#svgPath)" height="100" width="100" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="public/img/profile-img-01.png" src="{{item.img}}"/>
             <a class="text-primary" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">{{item.name}}</a>
         </li>
     </ul>

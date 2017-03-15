@@ -111,7 +111,7 @@ MentionListComponent = __decorate([
     core_1.Component({
         selector: 'mention-list',
         styles: ["\n      .scrollable-menu {\n        display: block;\n        height: auto;\n        max-height: 300px;\n        overflow: auto;\n      }\n    ", "\n      [hidden] {\n        display: none;\n      }\n    "],
-        template: "\n    <ul class=\"dropdown-menu scrollable-menu\" #list [hidden]=\"hidden\">\n        <li *ngFor=\"let item of items; let i = index\" [class.active]=\"activeIndex==i\">\n            <a class=\"text-primary\" (mousedown)=\"activeIndex=i;itemClick.emit();$event.preventDefault()\">{{item.name}}</a>\n        </li>\n    </ul>\n    "
+        template: "\n    <ul class=\"dropdown-menu scrollable-menu\" #list [hidden]=\"hidden\">\n        <li *ngFor=\"let item of items; let i = index\" [class.active]=\"activeIndex==i\">\n            <img class=\"profile-clip\" width=\"100\" height=\"100\"  clip-path=\"url(#svgPath)\" height=\"100\" width=\"100\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"public/img/profile-img-01.png\" src=\"{{item.img}}\"/>\n            <a class=\"text-primary\" (mousedown)=\"activeIndex=i;itemClick.emit();$event.preventDefault()\">{{item.name}}</a>\n        </li>\n    </ul>\n    "
     }),
     __metadata("design:paramtypes", [core_1.ElementRef])
 ], MentionListComponent);
