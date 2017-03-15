@@ -113,7 +113,7 @@ export class MentionDirective {
         (response) => {
           console.log(response);
           this.items = response;
-          this.searchList.items = this.items;
+          //this.searchList.items = this.items;
           this.showSearchList(nativeElement);
         }
       );      
