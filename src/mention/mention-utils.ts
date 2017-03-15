@@ -19,15 +19,26 @@ export function insertValue(
   el: HTMLInputElement,
   start: number,
   end: number,
-  text: string,
+  //text: string,
+  activeItem: any,
   iframe: HTMLIFrameElement,
   noRecursion: boolean = false
 ) {
   //console.log("insertValue", el.nodeName, start, end, "["+text+"]", el);
   if (isTextElement(el)) {
     let val = getValue(el);
-    setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
-    setCaretPosition(el, start + text.length, iframe);
+    //setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
+    //setCaretPosition(el, start + text.length, iframe);
+    let a = document.createElement('a');
+    a.setAttribute('href', '#');
+    a.setAttribute('class', 'note-mention');
+    a.setAttribute('data-router-link', '#');
+    a.setAttribute('data-object-id', activeItem.objectId);
+    a.setAttribute('data-type', 'user');
+    let linkText = document.createTextNode(' ' + activeItem.name + ' ');
+    a.appendChild(linkText);
+    el.appendChild(a);
+    setCaretPosition(el, start + activeItem.name.length, iframe);
   }
   else if (!noRecursion) {
     let selObj: Selection = getWindowSelection(iframe);
@@ -38,7 +49,8 @@ export function insertValue(
       // if (text.endsWith(' ')) {
       //   text = text.substring(0, text.length-1) + '\xA0';
       // }
-      insertValue(<HTMLInputElement>anchorNode, position - (end - start), position, text, iframe, true);
+      //insertValue(<HTMLInputElement>anchorNode, position - (end - start), position, text, iframe, true);
+      insertValue(<HTMLInputElement>anchorNode, position - (end - start), position, activeItem.name, iframe, true);
     }
   }
 }

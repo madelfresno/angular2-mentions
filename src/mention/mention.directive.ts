@@ -136,8 +136,10 @@ export class MentionDirective {
             this.searchList.hidden = true;
             // value is inserted without a trailing space for consistency
             // between element types (div and iframe do not preserve the space)
+            //insertValue(nativeElement, this.startPos, pos,
+              //this.mentionSelect(/*this.triggerChar + */this.searchList.activeItem), this.iframe);
             insertValue(nativeElement, this.startPos, pos,
-              this.mentionSelect(/*this.triggerChar + */this.searchList.activeItem), this.iframe);
+              this.searchList.activeItem, this.iframe);
             // fire input event so angular bindings are updated
             if ("createEvent" in document) {
               var evt = document.createEvent("HTMLEvents");

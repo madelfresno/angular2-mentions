@@ -56,8 +56,8 @@ var MentionListComponent = (function () {
     };
     Object.defineProperty(MentionListComponent.prototype, "activeItem", {
         get: function () {
-            //return this.items[this.activeIndex];
-            return this.items[this.activeIndex].name;
+            return this.items[this.activeIndex];
+            //return this.items[this.activeIndex].name;
         },
         enumerable: true,
         configurable: true

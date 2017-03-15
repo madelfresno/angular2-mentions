@@ -110,8 +110,8 @@ export class MentionListComponent {
   }
 
   get activeItem() {
-    //return this.items[this.activeIndex];
-    return this.items[this.activeIndex].name;
+    return this.items[this.activeIndex];
+    //return this.items[this.activeIndex].name;
   }
 
   activateNextItem() {

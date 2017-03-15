@@ -14,13 +14,25 @@ function getValue(el) {
     return isInputOrTextAreaElement(el) ? el.value : el.textContent;
 }
 exports.getValue = getValue;
-function insertValue(el, start, end, text, iframe, noRecursion) {
+function insertValue(el, start, end, 
+    //text: string,
+    activeItem, iframe, noRecursion) {
     if (noRecursion === void 0) { noRecursion = false; }
     //console.log("insertValue", el.nodeName, start, end, "["+text+"]", el);
     if (isTextElement(el)) {
         var val = getValue(el);
-        setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
-        setCaretPosition(el, start + text.length, iframe);
+        //setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
+        //setCaretPosition(el, start + text.length, iframe);
+        var a = document.createElement('a');
+        a.setAttribute('href', '#');
+        a.setAttribute('class', 'note-mention');
+        a.setAttribute('data-router-link', '#');
+        a.setAttribute('data-object-id', activeItem.objectId);
+        a.setAttribute('data-type', 'user');
+        var linkText = document.createTextNode(' ' + activeItem.name + ' ');
+        a.appendChild(linkText);
+        el.appendChild(a);
+        setCaretPosition(el, start + activeItem.name.length, iframe);
     }
     else if (!noRecursion) {
         var selObj = getWindowSelection(iframe);
@@ -31,7 +43,8 @@ function insertValue(el, start, end, text, iframe, noRecursion) {
             // if (text.endsWith(' ')) {
             //   text = text.substring(0, text.length-1) + '\xA0';
             // }
-            insertValue(anchorNode, position - (end - start), position, text, iframe, true);
+            //insertValue(<HTMLInputElement>anchorNode, position - (end - start), position, text, iframe, true);
+            insertValue(anchorNode, position - (end - start), position, activeItem.name, iframe, true);
         }
     }
 }
