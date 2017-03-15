@@ -110,11 +110,11 @@ export class MentionDirective {
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
       this.stopSearch = false;
       this.searchAsync(this.callbackFn, '').subscribe(
-        (response) => {          
-          this.items = response;          
+        (response) => {
+          this.items = response;
           this.showSearchList(nativeElement);
         }
-      );      
+      );
     }
     else if (this.startPos >= 0 && !this.stopSearch) {
       if (!event.shiftKey &&
