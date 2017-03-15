@@ -52,7 +52,7 @@ export function insertValue(
       //   text = text.substring(0, text.length-1) + '\xA0';
       // }
       //insertValue(<HTMLInputElement>anchorNode, position - (end - start), position, text, iframe, true);
-      insertValue(<HTMLInputElement>anchorNode, position - (end - start), position, activeItem.name, iframe, true);
+      insertValue(<HTMLInputElement>anchorNode, position - (end - start), position, activeItem, iframe, true);
     }
   }
 }
