@@ -32,7 +32,8 @@ import { getCaretCoordinates } from './caret-coords';
     `
 })
 export class MentionListComponent {
-  items = [];
+  //items = [];
+  items: any;
   data: any;
   activeIndex: number = 0;
   hidden: boolean = false;

@@ -20,7 +20,6 @@ var caret_coords_1 = require("./caret-coords");
 var MentionListComponent = (function () {
     function MentionListComponent(_element) {
         this._element = _element;
-        this.items = [];
         this.activeIndex = 0;
         this.hidden = false;
         this.itemClick = new core_1.EventEmitter();
