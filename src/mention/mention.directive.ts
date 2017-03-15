@@ -112,9 +112,7 @@ export class MentionDirective {
       this.searchAsync(this.callbackFn, '').subscribe(
         (response) => {
           this.items = response;
-          if (this.searchList) {
-            this.showSearchList(nativeElement);
-          }
+          this.showSearchList(nativeElement);
         }
       );
     }
