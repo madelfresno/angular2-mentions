@@ -22,8 +22,7 @@ var MentionListComponent = (function () {
         this._element = _element;
         this.items = [];
         this.activeIndex = 0;
-        //hidden: boolean = false;
-        this.hidden = true;
+        this.hidden = false;
         this.itemClick = new core_1.EventEmitter();
     }
     // lots of confusion here between relative coordinates and containers

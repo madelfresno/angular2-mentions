@@ -35,8 +35,7 @@ export class MentionListComponent {
   items = [];
   data: any;
   activeIndex: number = 0;
-  //hidden: boolean = false;
-  hidden: boolean = true;
+  hidden: boolean = false;
   @ViewChild('list') list : ElementRef;
   @Output() itemClick = new EventEmitter();
   constructor(private _element: ElementRef) {}

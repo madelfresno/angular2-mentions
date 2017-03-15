@@ -175,7 +175,9 @@ var MentionDirective = (function () {
             var componentRef = this._viewContainerRef.createComponent(componentFactory);
             this.searchList = componentRef.instance;
             this.searchList.items = this.items;
-            this.searchList.hidden = false;
+            if (this.items) {
+                this.searchList.hidden = false;
+            }
             this.searchList.position(nativeElement, this.iframe);
             componentRef.instance['itemClick'].subscribe(function () {
                 nativeElement.focus();
@@ -186,7 +188,9 @@ var MentionDirective = (function () {
         else {
             this.searchList.activeIndex = 0;
             this.searchList.items = this.items;
-            this.searchList.hidden = false;
+            if (this.items) {
+                this.searchList.hidden = false;
+            }
             this.searchList.position(nativeElement, this.iframe);
             window.setTimeout(function () { return _this.searchList.resetScroll(); });
         }

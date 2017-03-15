@@ -196,7 +196,9 @@ export class MentionDirective {
       let componentRef = this._viewContainerRef.createComponent(componentFactory);
       this.searchList = componentRef.instance;
       this.searchList.items = this.items;
-      this.searchList.hidden = false;
+      if (this.items) {
+        this.searchList.hidden = false;
+      }
       this.searchList.position(nativeElement, this.iframe);
       componentRef.instance['itemClick'].subscribe(() => {
         nativeElement.focus();
@@ -207,7 +209,9 @@ export class MentionDirective {
     else {
       this.searchList.activeIndex = 0;
       this.searchList.items = this.items;
-      this.searchList.hidden = false;
+      if (this.items) {
+        this.searchList.hidden = false;
+      }
       this.searchList.position(nativeElement, this.iframe);
       window.setTimeout(() => this.searchList.resetScroll());
     }
