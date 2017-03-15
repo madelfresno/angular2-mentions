@@ -159,16 +159,11 @@ var MentionDirective = (function () {
                         mention_1 += charPressed;
                     }
                     this.searchAsync(this.callbackFn, mention_1.substring(1)).subscribe(function (response) {
-                        console.log(response);
                         _this.items = response;
                         var regEx = new RegExp("^" + mention_1.substring(1), "i");
-                        //let matches = this.items.filter(e => e.name.match(regEx) != null);
                         var matches = [];
-                        //if (this.items) {
-                        matches = _this.items.filter(function (e) { return e.firstName.match(regEx) != null; });
-                        //matches = this.items.filter(e => {console.log(e);});              
+                        matches = _this.items.filter(function (e) { return e.name.match(regEx) != null; });
                         _this.searchList.items = matches;
-                        //}                     
                         _this.searchList.hidden = matches.length == 0 || pos <= _this.startPos;
                     });
                 }

@@ -26,14 +26,13 @@ import { getCaretCoordinates } from './caret-coords';
   template: `
     <ul class="dropdown-menu scrollable-menu" #list [hidden]="hidden">
         <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">
-            <a class="text-primary" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">{{item.firstName}}</a>
+            <a class="text-primary" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">{{item.name}}</a>
         </li>
     </ul>
     `
 })
 export class MentionListComponent {
-  //items = [];
-  items: any;
+  items = [];
   data: any;
   activeIndex: number = 0;
   hidden: boolean = false;

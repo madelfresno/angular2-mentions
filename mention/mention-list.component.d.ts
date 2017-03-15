@@ -7,7 +7,7 @@ import { ElementRef, EventEmitter } from '@angular/core';
  */
 export declare class MentionListComponent {
     private _element;
-    items: any;
+    items: any[];
     data: any;
     activeIndex: number;
     hidden: boolean;
