@@ -60,7 +60,7 @@ export class MentionDirective {
 
   @Input() mentionSelect: (selection: string) => (string) = (selection: string) => selection;
 
-  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
+  @Output() notifySelection: EventEmitter<any> = new EventEmitter<any>();
 
   setIframe(iframe: HTMLIFrameElement) {
     this.iframe = iframe;
@@ -148,7 +148,7 @@ export class MentionDirective {
               evt.initEvent("input", false, true);
               nativeElement.dispatchEvent(evt);
             }*/
-            this.notify.emit(this.searchList.activeItem);
+            this.notifySelection.emit(this.searchList.activeItem);
             this.startPos = -1;
             return false;
           }
