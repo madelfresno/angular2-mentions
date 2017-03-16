@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
+import { Directive, ElementRef, Input, Output, EventEmitter, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
 import { Observable } from 'rxjs';
 import { MentionListComponent } from './mention-list.component';
 import { getValue, insertValue, getCaretPosition, setCaretPosition } from './mention-utils';
@@ -59,6 +59,8 @@ export class MentionDirective {
   @Input() scope: any;
 
   @Input() mentionSelect: (selection: string) => (string) = (selection: string) => selection;
+
+  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
   setIframe(iframe: HTMLIFrameElement) {
     this.iframe = iframe;
@@ -146,6 +148,7 @@ export class MentionDirective {
               evt.initEvent("input", false, true);
               nativeElement.dispatchEvent(evt);
             }
+            this.notify.emit(this.searchList.activeItem);
             this.startPos = -1;
             return false;
           }

@@ -1,4 +1,4 @@
-import { ElementRef, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
+import { ElementRef, EventEmitter, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
 import { Observable } from 'rxjs';
 import { MentionListComponent } from './mention-list.component';
 /**
@@ -24,6 +24,7 @@ export declare class MentionDirective {
     callbackFn: Function;
     scope: any;
     mentionSelect: (selection: string) => (string);
+    notify: EventEmitter<any>;
     setIframe(iframe: HTMLIFrameElement): void;
     stopEvent(event: any): void;
     blurHandler(event: any): void;
