@@ -36,7 +36,7 @@ var MentionDirective = (function () {
         this.triggerChar = "@";
         this.asyncSearch = false;
         this.mentionSelect = function (selection) { return selection; };
-        this.notify = new core_1.EventEmitter();
+        this.notifySelection = new core_1.EventEmitter();
     }
     Object.defineProperty(MentionDirective.prototype, "mention", {
         /*@Input() set mention(items:string []){
@@ -130,7 +130,7 @@ var MentionDirective = (function () {
                           evt.initEvent("input", false, true);
                           nativeElement.dispatchEvent(evt);
                         }*/
-                        this.notify.emit(this.searchList.activeItem);
+                        this.notifySelection.emit(this.searchList.activeItem);
                         this.startPos = -1;
                         return false;
                     }
@@ -233,7 +233,7 @@ __decorate([
 __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
-], MentionDirective.prototype, "notify", void 0);
+], MentionDirective.prototype, "notifySelection", void 0);
 MentionDirective = __decorate([
     core_1.Directive({
         selector: '[mention]',

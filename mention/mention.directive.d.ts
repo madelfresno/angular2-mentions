@@ -24,7 +24,7 @@ export declare class MentionDirective {
     callbackFn: Function;
     scope: any;
     mentionSelect: (selection: string) => (string);
-    notify: EventEmitter<any>;
+    notifySelection: EventEmitter<any>;
     setIframe(iframe: HTMLIFrameElement): void;
     stopEvent(event: any): void;
     blurHandler(event: any): void;
