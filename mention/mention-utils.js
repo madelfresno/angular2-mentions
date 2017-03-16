@@ -23,16 +23,6 @@ function insertValue(el, start, end,
         var val = getValue(el);
         /*setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
         setCaretPosition(el, start + text.length, iframe);*/
-        /*let a = document.createElement('a');
-        a.setAttribute('href', '#');
-        a.setAttribute('class', 'note-mention');
-        a.setAttribute('data-router-link', '#');
-        a.setAttribute('data-object-id', activeItem.objectId);
-        a.setAttribute('data-type', 'user');
-        let linkText = document.createTextNode(' ' + activeItem.name + ' ');
-        a.appendChild(linkText);
-        el.appendChild(a);
-        setCaretPosition(el, start + activeItem.name.length, iframe);*/
         setValue(el, val.substring(0, start) + activeItem.name + val.substring(end, val.length));
         setCaretPosition(el, start + activeItem.name.length, iframe);
     }
