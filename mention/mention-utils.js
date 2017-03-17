@@ -23,7 +23,7 @@ function insertValue(el, start, end,
         var val = getValue(el);
         /*setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
         setCaretPosition(el, start + text.length, iframe);*/
-        //setValue(el, val.substring(0, start) + /*activeItem.name +*/ val.substring(end, val.length));
+        setValue(el, val.substring(0, start) + val.substring(end, val.length));
         setCaretPosition(el, start /*+ activeItem.name.length*/, iframe);
     }
     else if (!noRecursion) {
