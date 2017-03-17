@@ -24,7 +24,7 @@ function insertValue(el, start, end,
         /*setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
         setCaretPosition(el, start + text.length, iframe);*/
         setValue(el, val.substring(0, start) + val.substring(end, val.length));
-        setCaretPosition(el, start /*+ activeItem.name.length*/, iframe);
+        setCaretPosition(el, start + 1 + activeItem.name.length, iframe);
     }
     else if (!noRecursion) {
         var selObj = getWindowSelection(iframe);
