@@ -30,7 +30,7 @@ export function insertValue(
     /*setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
     setCaretPosition(el, start + text.length, iframe);*/    
     setValue(el, val.substring(0, start) + /*activeItem.name +*/ val.substring(end, val.length));
-    setCaretPosition(el, start /*+ activeItem.name.length*/, iframe);
+    setCaretPosition(el, start + activeItem.name.length, iframe);
   }
   else if (!noRecursion) {
     let selObj: Selection = getWindowSelection(iframe);
