@@ -36,16 +36,17 @@ import { getCaretCoordinates } from './caret-coords';
         height: auto;
         max-height: 300px;
         overflow: auto;
-      },
-      :host {
-        left: 15px;
-        right: 15px;
-        color: red;
-      }
+      },      
     `,`
       [hidden] {
         display: none;
       }
+    `,`
+      :host {
+        left: 15px !important;
+        right: 15px !important;
+        color: red;
+      }    
     `],
     template: `
     <ul class="dropdown-menu scrollable-menu typeahead-mention" #list [hidden]="hidden">
