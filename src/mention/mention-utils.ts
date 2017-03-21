@@ -27,7 +27,6 @@ export function insertValue(
   //console.log("insertValue", el.nodeName, start, end, "["+text+"]", el);
   if (isTextElement(el)) {
     let val = getValue(el);
-    console.log(val);
     /*setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
     setCaretPosition(el, start + text.length, iframe);*/    
     setValue(el, val.substring(0, start) + /*activeItem.name +*/ val.substring(end, val.length));
