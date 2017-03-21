@@ -60,6 +60,8 @@ export class MentionDirective {
 
   @Input() mentionSelect: (selection: string) => (string) = (selection: string) => selection;
 
+  @Input() mobile: boolean;
+
   @Output() notifySelection: EventEmitter<any> = new EventEmitter<any>();
 
   setIframe(iframe: HTMLIFrameElement) {
@@ -201,7 +203,7 @@ export class MentionDirective {
       if (this.items) {
         this.searchList.hidden = false;
       }
-      this.searchList.position(nativeElement, this.iframe);
+      this.searchList.position(nativeElement, this.iframe, this.mobile);
       componentRef.instance['itemClick'].subscribe(() => {
         nativeElement.focus();
         let fakeKeydown = {"keyCode":KEY_ENTER,"wasClick":true};
@@ -214,7 +216,7 @@ export class MentionDirective {
       if (this.items) {
         this.searchList.hidden = false;
       }
-      this.searchList.position(nativeElement, this.iframe);
+      this.searchList.position(nativeElement, this.iframe, this.mobile);
       window.setTimeout(() => this.searchList.resetScroll());
     }
   }

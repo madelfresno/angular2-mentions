@@ -26,8 +26,9 @@ var MentionListComponent = (function () {
         this.itemClick = new core_1.EventEmitter();
     }
     // lots of confusion here between relative coordinates and containers
-    MentionListComponent.prototype.position = function (nativeParentElement, iframe) {
+    MentionListComponent.prototype.position = function (nativeParentElement, iframe, isMobile) {
         if (iframe === void 0) { iframe = null; }
+        if (isMobile === void 0) { isMobile = false; }
         var coords = { top: 0, left: 0 };
         if (mention_utils_1.isInputOrTextAreaElement(nativeParentElement)) {
             // parent elements need to have postition:relative for this to work correctly?
@@ -51,13 +52,18 @@ var MentionListComponent = (function () {
         }
         var el = this._element.nativeElement;
         el.style.position = "absolute";
-        el.style.left = coords.left + 'px';
-        el.style.top = coords.top + 'px';
+        if (isMobile) {
+            el.style.left = '15px';
+            el.style.right = '15px';
+            el.style.top = coords.top + 'px';
+        }
+        else {
+            el.style.left = coords.left + 'px';
+        }
     };
     Object.defineProperty(MentionListComponent.prototype, "activeItem", {
         get: function () {
             return this.items[this.activeIndex];
-            //return this.items[this.activeIndex].name;
         },
         enumerable: true,
         configurable: true
@@ -129,7 +135,7 @@ MentionListComponent = __decorate([
               </li>
           </ul>
           `*/
-        styles: ["\n      .scrollable-menu {\n        display: block;\n        height: auto;\n        max-height: 300px;\n        overflow: auto;\n      },      \n    ", "\n      [hidden] {\n        display: none;\n      }\n    ", "\n      :host {\n        left: 15px !important;\n        right: 15px !important;\n        color: red;\n      }    \n    "],
+        styles: ["\n      .scrollable-menu {\n        display: block;\n        height: auto;\n        max-height: 300px;\n        overflow: auto;\n      },      \n    ", "\n      [hidden] {\n        display: none;\n      }\n    "],
         template: "\n    <ul class=\"dropdown-menu scrollable-menu typeahead-mention\" #list [hidden]=\"hidden\">\n        <li *ngFor=\"let item of items; let i = index\" [class.active]=\"activeIndex==i\">            \n          <a class=\"dropdown-cnt-img-profile\" (mousedown)=\"activeIndex=i;itemClick.emit();$event.preventDefault()\">\n            <div class=\"cnt-img-profile\">\n              <img class=\"profile-clip\" width=\"100\" height=\"100\" clip-path=\"url(#svgPath)\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" src=\"{{item.img}}\">\n              <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" width=\"100\" height=\"100\" style=\"\" class=\"svg\">\n                <defs>\n                  <style>\n                    .svg-border {\n                      fill: none;\n                    }\n                  </style>\n                  <clipPath id=\"svgPath\">\n                    <path class=\"cls-1\" d=\"M81.784,82.488,56.656,96.994c-5.778,3.333-15.225,3.333-21.027,0L10.5,82.488C4.723,79.155,0,70.955,0,64.29V35.278c0-6.665,4.723-14.865,10.5-18.2L35.629,2.575c5.778-3.333,15.225-3.333,21.027,0L81.784,17.08c5.778,3.333,10.5,11.533,10.5,18.2V64.29C92.285,70.955,87.562,79.155,81.784,82.488Z\" width=\"100\" height=\"100\"></path>\n                  </clipPath>\n                </defs>\n              </svg>\n            </div>\n          </a>\n          <a class=\"item-info\" (mousedown)=\"activeIndex=i;itemClick.emit();$event.preventDefault()\">\n            {{item.name}}\n          </a>\n        </li>\n    </ul>\n    "
     }),
     __metadata("design:paramtypes", [core_1.ElementRef])

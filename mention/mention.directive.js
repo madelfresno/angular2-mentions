@@ -180,7 +180,7 @@ var MentionDirective = (function () {
             if (this.items) {
                 this.searchList.hidden = false;
             }
-            this.searchList.position(nativeElement, this.iframe);
+            this.searchList.position(nativeElement, this.iframe, this.mobile);
             componentRef.instance['itemClick'].subscribe(function () {
                 nativeElement.focus();
                 var fakeKeydown = { "keyCode": KEY_ENTER, "wasClick": true };
@@ -193,7 +193,7 @@ var MentionDirective = (function () {
             if (this.items) {
                 this.searchList.hidden = false;
             }
-            this.searchList.position(nativeElement, this.iframe);
+            this.searchList.position(nativeElement, this.iframe, this.mobile);
             window.setTimeout(function () { return _this.searchList.resetScroll(); });
         }
     };
@@ -227,6 +227,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Function)
 ], MentionDirective.prototype, "mentionSelect", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], MentionDirective.prototype, "mobile", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)

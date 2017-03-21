@@ -41,12 +41,6 @@ import { getCaretCoordinates } from './caret-coords';
       [hidden] {
         display: none;
       }
-    `,`
-      :host {
-        left: 15px !important;
-        right: 15px !important;
-        color: red;
-      }    
     `],
     template: `
     <ul class="dropdown-menu scrollable-menu typeahead-mention" #list [hidden]="hidden">
@@ -85,8 +79,8 @@ export class MentionListComponent {
   constructor(private _element: ElementRef) {}
 
   // lots of confusion here between relative coordinates and containers
-  position(nativeParentElement: HTMLInputElement, iframe: HTMLIFrameElement = null) {
-    let coords = { top: 0, left: 0 };
+  position(nativeParentElement: HTMLInputElement, iframe: HTMLIFrameElement = null, isMobile: boolean = false) {
+    let coords = { top: 0, left: 0 };    
     if (isInputOrTextAreaElement(nativeParentElement)) {
       // parent elements need to have postition:relative for this to work correctly?
       coords = getCaretCoordinates(nativeParentElement, nativeParentElement.selectionStart);
@@ -111,13 +105,17 @@ export class MentionListComponent {
     }
     let el: HTMLElement = this._element.nativeElement;
     el.style.position = "absolute";
-    el.style.left = coords.left + 'px';
-    el.style.top = coords.top + 'px';
+    if (isMobile) {
+      el.style.left = '15px';
+      el.style.right = '15px';
+      el.style.top = coords.top + 'px';
+    } else {
+      el.style.left = coords.left + 'px';      
+    }    
   }
 
   get activeItem() {
     return this.items[this.activeIndex];
-    //return this.items[this.activeIndex].name;
   }
 
   activateNextItem() {
