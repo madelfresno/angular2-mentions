@@ -86,7 +86,7 @@ export class MentionListComponent {
     }
     let el: HTMLElement = this._element.nativeElement;
     el.style.position = "absolute";
-    if (isMobile) {
+    if (navigator.userAgent.indexOf('Mobile')) {
       el.style.left = '15px';
       el.style.right = '15px';      
       el.style.top = coords.top + 'px';
