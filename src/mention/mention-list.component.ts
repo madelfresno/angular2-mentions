@@ -36,6 +36,8 @@ import { getCaretCoordinates } from './caret-coords';
         height: auto;
         max-height: 300px;
         overflow: auto;
+        left: 15px;
+        right: 15px;
       }
     `,`
       [hidden] {
