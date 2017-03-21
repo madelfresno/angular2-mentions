@@ -88,10 +88,11 @@ export class MentionListComponent {
     el.style.position = "absolute";
     if (isMobile) {
       el.style.left = '15px';
-      el.style.right = '15px';
+      el.style.right = '15px';      
       el.style.top = coords.top + 'px';
     } else {
       el.style.left = coords.left + 'px';      
+      el.style.top = coords.top + 'px';
     }    
   }
 

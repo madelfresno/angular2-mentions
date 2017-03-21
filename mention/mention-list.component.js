@@ -59,6 +59,7 @@ var MentionListComponent = (function () {
         }
         else {
             el.style.left = coords.left + 'px';
+            el.style.top = coords.top + 'px';
         }
     };
     Object.defineProperty(MentionListComponent.prototype, "activeItem", {
