@@ -40,7 +40,7 @@ import { getCaretCoordinates } from './caret-coords';
       :host {
         left: 15px;
         right: 15px;
-        color: red
+        color: red;
       }
     `,`
       [hidden] {
