@@ -39,9 +39,6 @@ var MentionDirective = (function () {
         this.notifySelection = new core_1.EventEmitter();
     }
     Object.defineProperty(MentionDirective.prototype, "mention", {
-        /*@Input() set mention(items:string []){
-          this.items = items.sort();
-        }*/
         set: function (items) {
             this.items = items;
         },
@@ -122,11 +119,11 @@ var MentionDirective = (function () {
                         // between element types (div and iframe do not preserve the space)            
                         mention_utils_1.insertValue(nativeElement, this.startPos, pos, this.searchList.activeItem, this.iframe);
                         // fire input event so angular bindings are updated
-                        /*if ("createEvent" in document) {
-                          var evt = document.createEvent("HTMLEvents");
-                          evt.initEvent("input", false, true);
-                          nativeElement.dispatchEvent(evt);
-                        }*/
+                        if ("createEvent" in document) {
+                            var evt = document.createEvent("HTMLEvents");
+                            evt.initEvent("input", false, true);
+                            nativeElement.dispatchEvent(evt);
+                        }
                         this.notifySelection.emit(this.searchList.activeItem);
                         this.startPos = -1;
                         return false;

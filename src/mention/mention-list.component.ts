@@ -10,26 +10,7 @@ import { getCaretCoordinates } from './caret-coords';
  * Copyright (c) 2016 Dan MacFarlane
  */
 @Component({
-  selector: 'mention-list',
-  /*styles: [`
-      .scrollable-menu {
-        display: block;
-        height: auto;
-        max-height: 300px;
-        overflow: auto;
-      }
-    `,`
-      [hidden] {
-        display: none;
-      }
-    `],
-  template: `
-    <ul class="dropdown-menu scrollable-menu" #list [hidden]="hidden">
-        <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">            
-            <a class="text-primary" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">{{item.name}}</a>
-        </li>
-    </ul>
-    `*/
+  selector: 'mention-list',  
     styles: [`
       .scrollable-menu {
         display: block;

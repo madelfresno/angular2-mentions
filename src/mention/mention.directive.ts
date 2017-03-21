@@ -29,7 +29,6 @@ const KEY_2 = 50;
   }
 })
 export class MentionDirective {
-  //items: string[];
   items: any;
   startPos: number;
   startNode;
@@ -45,10 +44,6 @@ export class MentionDirective {
   @Input() triggerChar: string = "@";
 
   @Input() asyncSearch: boolean = false;
-
-  /*@Input() set mention(items:string []){
-    this.items = items.sort();
-  }*/
 
   @Input() set mention(items: any){
     this.items = items;
@@ -142,11 +137,11 @@ export class MentionDirective {
             // between element types (div and iframe do not preserve the space)            
             insertValue(nativeElement, this.startPos, pos, this.searchList.activeItem, this.iframe);
             // fire input event so angular bindings are updated
-            /*if ("createEvent" in document) {
+            if ("createEvent" in document) {
               var evt = document.createEvent("HTMLEvents");
               evt.initEvent("input", false, true);
               nativeElement.dispatchEvent(evt);
-            }*/            
+            }
             this.notifySelection.emit(this.searchList.activeItem);
             this.startPos = -1;
             return false;
