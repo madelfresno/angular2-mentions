@@ -38,8 +38,9 @@ import { getCaretCoordinates } from './caret-coords';
         overflow: auto;
       },
       :host {
-        letf: 15px;
+        left: 15px;
         right: 15px;
+        color: red
       }
     `,`
       [hidden] {
