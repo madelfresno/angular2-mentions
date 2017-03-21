@@ -137,21 +137,15 @@ export class MentionDirective {
             this.stopEvent(event);
             this.searchList.hidden = true;
             // value is inserted without a trailing space for consistency
-            // between element types (div and iframe do not preserve the space)
-            //insertValue(nativeElement, this.startPos, pos,
-              //this.mentionSelect(/*this.triggerChar + */this.searchList.activeItem), this.iframe);
+            // between element types (div and iframe do not preserve the space)            
             insertValue(nativeElement, this.startPos, pos, this.searchList.activeItem, this.iframe);
             // fire input event so angular bindings are updated
             /*if ("createEvent" in document) {
               var evt = document.createEvent("HTMLEvents");
               evt.initEvent("input", false, true);
               nativeElement.dispatchEvent(evt);
-            }*/
-            let selection = {
-              mention: this.searchList.activeItem,
-              element: nativeElement    
-            };
-            this.notifySelection.emit(selection);
+            }*/            
+            this.notifySelection.emit(this.searchList.activeItem);
             this.startPos = -1;
             return false;
           }

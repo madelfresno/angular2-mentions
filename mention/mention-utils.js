@@ -14,15 +14,11 @@ function getValue(el) {
     return isInputOrTextAreaElement(el) ? el.value : el.textContent;
 }
 exports.getValue = getValue;
-function insertValue(el, start, end, 
-    //text: string,
-    activeItem, iframe, noRecursion) {
+function insertValue(el, start, end, activeItem, iframe, noRecursion) {
     if (noRecursion === void 0) { noRecursion = false; }
     //console.log("insertValue", el.nodeName, start, end, "["+text+"]", el);
     if (isTextElement(el)) {
         var val = getValue(el);
-        /*setValue(el, val.substring(0, start) + text + val.substring(end, val.length));
-        setCaretPosition(el, start + text.length, iframe);*/
         setValue(el, val.substring(0, start) + val.substring(end, val.length));
     }
     else if (!noRecursion) {
@@ -31,10 +27,6 @@ function insertValue(el, start, end,
             var selRange = selObj.getRangeAt(0);
             var position = selRange.startOffset;
             var anchorNode = selObj.anchorNode;
-            // if (text.endsWith(' ')) {
-            //   text = text.substring(0, text.length-1) + '\xA0';
-            // }
-            //insertValue(<HTMLInputElement>anchorNode, position - (end - start), position, text, iframe, true);
             insertValue(anchorNode, position - (end - start), position, activeItem, iframe, true);
         }
     }
