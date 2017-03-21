@@ -129,7 +129,11 @@ var MentionDirective = (function () {
                           evt.initEvent("input", false, true);
                           nativeElement.dispatchEvent(evt);
                         }*/
-                        this.notifySelection.emit(this.searchList.activeItem);
+                        var selection = {
+                            mention: this.searchList.activeItem,
+                            element: nativeElement
+                        };
+                        this.notifySelection.emit(selection);
                         this.startPos = -1;
                         return false;
                     }
