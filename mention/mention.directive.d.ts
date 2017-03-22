@@ -31,5 +31,5 @@ export declare class MentionDirective {
     blurHandler(event: any): void;
     keyHandler(event: any, nativeElement?: HTMLInputElement): boolean;
     showSearchList(nativeElement: HTMLInputElement): void;
-    searchAsync(callbackFn: Function, token: string): Observable<any>;
+    searchAsync(callbackFn: Function, token: string, pos: number): Observable<any>;
 }
