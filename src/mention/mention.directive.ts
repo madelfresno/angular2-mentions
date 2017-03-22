@@ -108,7 +108,7 @@ export class MentionDirective {
       this.startPos = pos;
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
       this.stopSearch = false;
-      this.searchAsync(this.callbackFn, '', this.startNode).subscribe(
+      this.searchAsync(this.callbackFn, '', window.getSelection()).subscribe(
         (response) => {
           this.items = response;
           this.showSearchList(nativeElement);
@@ -174,7 +174,7 @@ export class MentionDirective {
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
           }
-          this.searchAsync(this.callbackFn, mention.substring(1), this.startNode).subscribe(
+          this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
             (response) => {
               this.items = response;
               let regEx = new RegExp("^" + mention.substring(1), "i");
