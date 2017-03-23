@@ -122,10 +122,10 @@ export class MentionDirective {
           !event.ctrlKey &&
           pos > this.startPos
       ) {
-        if (event.keyCode === KEY_SPACE) {
+        /*if (event.keyCode === KEY_SPACE) {
           this.startPos = -1;
         }
-        else if (event.keyCode === KEY_BACKSPACE && pos > 0) {
+        else*/ if (event.keyCode === KEY_BACKSPACE && pos > 0) {
           this.searchList.hidden = this.stopSearch;
           pos--;
         }
