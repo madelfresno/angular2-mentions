@@ -179,11 +179,13 @@ export class MentionDirective {
             (response) => {
               this.items = response;
               this.showSearchList(nativeElement);
-              let regEx = new RegExp("^" + mention.substring(1), "i");
-              let matches = [];
-              matches = this.items.filter(e => e.name.match(regEx) != null);
-              this.searchList.items = matches;
-              this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+              if (this.searchList) {
+                let regEx = new RegExp("^" + mention.substring(1), "i");
+                let matches = [];
+                matches = this.items.filter(e => e.name.match(regEx) != null);
+                this.searchList.items = matches;
+                this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+              }
             }
           );
         }

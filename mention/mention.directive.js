@@ -156,11 +156,13 @@ var MentionDirective = (function () {
                     this.searchAsync(this.callbackFn, mention_1.substring(1), window.getSelection()).subscribe(function (response) {
                         _this.items = response;
                         _this.showSearchList(nativeElement);
-                        var regEx = new RegExp("^" + mention_1.substring(1), "i");
-                        var matches = [];
-                        matches = _this.items.filter(function (e) { return e.name.match(regEx) != null; });
-                        _this.searchList.items = matches;
-                        _this.searchList.hidden = matches.length == 0 || pos <= _this.startPos;
+                        if (_this.searchList) {
+                            var regEx_1 = new RegExp("^" + mention_1.substring(1), "i");
+                            var matches = [];
+                            matches = _this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
+                            _this.searchList.items = matches;
+                            _this.searchList.hidden = matches.length == 0 || pos <= _this.startPos;
+                        }
                     });
                 }
             }
