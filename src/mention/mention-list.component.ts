@@ -25,8 +25,8 @@ import { getCaretCoordinates } from './caret-coords';
     `],
     template: `
     <ul class="dropdown-menu scrollable-menu typeahead-mention" #list [hidden]="hidden">
-        <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">            
-          <a class="dropdown-cnt-img-profile" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">
+        <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">            
+          <a class="dropdown-cnt-img-profile">
             <div class="cnt-img-profile">
               <img class="profile-clip" width="100" height="100" clip-path="url(#svgPath)" xmlns:xlink="http://www.w3.org/1999/xlink" src="{{item.img}}">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" style="" class="svg">
@@ -43,7 +43,7 @@ import { getCaretCoordinates } from './caret-coords';
               </svg>
             </div>
           </a>
-          <a class="item-info" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">
+          <a class="item-info">
             {{item.name}}
           </a>
         </li>
@@ -100,8 +100,7 @@ export class MentionListComponent {
     return this.items[this.activeIndex];
   }
 
-  activateNextItem() {
-    console.log(this.items.length, this.activeIndex);
+  activateNextItem() {    
     // adjust scrollable-menu offset if the next item is out of view
     let listEl: HTMLElement = this.list.nativeElement;
     let activeEl = listEl.getElementsByClassName('active').item(0);
@@ -116,10 +115,10 @@ export class MentionListComponent {
     }
     // select the next item
     this.activeIndex = Math.max(Math.min(this.activeIndex + 1, this.items.length - 1), 0);    
+    console.log(this.items.length, this.activeIndex);
   }
 
-  activatePreviousItem() {
-    console.log(this.items.length, this.activeIndex);
+  activatePreviousItem() {    
     // adjust the scrollable-menu offset if the previous item is out of view
     let listEl: HTMLElement = this.list.nativeElement;
     let activeEl = listEl.getElementsByClassName('active').item(0);
@@ -134,6 +133,7 @@ export class MentionListComponent {
     }
     // select the previous item
     this.activeIndex = Math.max(Math.min(this.activeIndex - 1, this.items.length - 1), 0);
+    console.log(this.items.length, this.activeIndex);
   }
   
   resetScroll() {
