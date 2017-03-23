@@ -155,6 +155,7 @@ var MentionDirective = (function () {
                     if (event.keyCode !== KEY_BACKSPACE) {
                         mention_1 += charPressed;
                     }
+                    console.log(mention_1);
                     this.searchAsync(this.callbackFn, mention_1.substring(1), window.getSelection()).subscribe(function (response) {
                         _this.items = response;
                         var regEx = new RegExp("^" + mention_1.substring(1), "i");

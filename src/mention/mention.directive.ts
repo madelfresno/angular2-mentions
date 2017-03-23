@@ -174,6 +174,7 @@ export class MentionDirective {
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
           }
+          console.log(mention);
           this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
             (response) => {
               this.items = response;
