@@ -83,6 +83,7 @@ export class MentionDirective {
   keyHandler(event: any, nativeElement: HTMLInputElement = this._element.nativeElement) {
     let val: string = getValue(nativeElement);
     let pos = getCaretPosition(nativeElement, this.iframe);
+    console.log('pos', pos);
     let charPressed = event.key;
     if (!charPressed) {
       let charCode = event.which || event.keyCode;
@@ -106,6 +107,7 @@ export class MentionDirective {
     //console.log("keyHandler", this.startPos, pos, val, charPressed, event);
     if (charPressed == this.triggerChar) {
       this.startPos = pos;
+      console.log('startPos at triggerChar', this.startPos);
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
       this.stopSearch = false;
       this.searchAsync(this.callbackFn, '', window.getSelection()).subscribe(
@@ -170,6 +172,7 @@ export class MentionDirective {
         }
         else {
           // update search
+          console.log('startpos at update search', this.startPos);
           let mention = val.substring(this.startPos, pos);
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
