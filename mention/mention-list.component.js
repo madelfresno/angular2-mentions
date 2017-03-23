@@ -70,6 +70,7 @@ var MentionListComponent = (function () {
         configurable: true
     });
     MentionListComponent.prototype.activateNextItem = function () {
+        console.log(this.items.length);
         // adjust scrollable-menu offset if the next item is out of view
         var listEl = this.list.nativeElement;
         var activeEl = listEl.getElementsByClassName('active').item(0);
@@ -86,6 +87,7 @@ var MentionListComponent = (function () {
         this.activeIndex = Math.max(Math.min(this.activeIndex + 1, this.items.length - 1), 0);
     };
     MentionListComponent.prototype.activatePreviousItem = function () {
+        console.log(this.items.length);
         // adjust the scrollable-menu offset if the previous item is out of view
         var listEl = this.list.nativeElement;
         var activeEl = listEl.getElementsByClassName('active').item(0);
