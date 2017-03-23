@@ -35,6 +35,7 @@ var MentionDirective = (function () {
         this._viewContainerRef = _viewContainerRef;
         this.triggerChar = "@";
         this.asyncSearch = false;
+        this.minCharacters = 2;
         this.mentionSelect = function (selection) { return selection; };
         this.notifySelection = new core_1.EventEmitter();
     }
@@ -153,17 +154,19 @@ var MentionDirective = (function () {
                     if (event.keyCode !== KEY_BACKSPACE) {
                         mention += charPressed;
                     }
-                    this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(function (response) {
-                        _this.items = response;
-                        if (_this.items.length) {
-                            _this.showSearchList(nativeElement);
-                        }
-                        /*let regEx = new RegExp("^" + mention.substring(1), "i");
-                        let matches = [];
-                        matches = this.items.filter(e => e.name.match(regEx) != null);
-                        this.searchList.items = matches;
-                        this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
-                    });
+                    if (mention.substring(1).length >= this.minCharacters) {
+                        this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(function (response) {
+                            _this.items = response;
+                            if (_this.items.length) {
+                                _this.showSearchList(nativeElement);
+                            }
+                            /*let regEx = new RegExp("^" + mention.substring(1), "i");
+                            let matches = [];
+                            matches = this.items.filter(e => e.name.match(regEx) != null);
+                            this.searchList.items = matches;
+                            this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
+                        });
+                    }
                 }
             }
         }
@@ -208,6 +211,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Boolean)
 ], MentionDirective.prototype, "asyncSearch", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], MentionDirective.prototype, "minCharacters", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Object),

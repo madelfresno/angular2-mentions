@@ -45,6 +45,8 @@ export class MentionDirective {
 
   @Input() asyncSearch: boolean = false;
 
+  @Input() minCharacters: number = 2;
+
   @Input() set mention(items: any){
     this.items = items;
   }
@@ -174,20 +176,22 @@ export class MentionDirective {
           let mention = val.substring(this.startPos, pos);
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
-          }          
-          this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
-            (response) => {
-              this.items = response;
-              if (this.items.length) {
-                this.showSearchList(nativeElement);
-              }              
-              /*let regEx = new RegExp("^" + mention.substring(1), "i");
-              let matches = [];
-              matches = this.items.filter(e => e.name.match(regEx) != null);
-              this.searchList.items = matches;
-              this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
-            }
-          );
+          }    
+          if (mention.substring(1).length >= this.minCharacters) {      
+            this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
+              (response) => {
+                this.items = response;
+                if (this.items.length) {
+                  this.showSearchList(nativeElement);
+                }              
+                /*let regEx = new RegExp("^" + mention.substring(1), "i");
+                let matches = [];
+                matches = this.items.filter(e => e.name.match(regEx) != null);
+                this.searchList.items = matches;
+                this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
+              }
+            );
+          }
         }
       }
     }

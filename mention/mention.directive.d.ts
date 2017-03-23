@@ -20,6 +20,7 @@ export declare class MentionDirective {
     constructor(_element: ElementRef, _componentResolver: ComponentFactoryResolver, _viewContainerRef: ViewContainerRef);
     triggerChar: string;
     asyncSearch: boolean;
+    minCharacters: number;
     mention: any;
     callbackFn: Function;
     scope: any;
