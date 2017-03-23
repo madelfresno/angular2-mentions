@@ -108,12 +108,12 @@ export class MentionDirective {
       this.startPos = pos;      
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
       this.stopSearch = false;
-      this.searchAsync(this.callbackFn, '', window.getSelection()).subscribe(
+      /*this.searchAsync(this.callbackFn, '', window.getSelection()).subscribe(
         (response) => {
           this.items = response;
           //this.showSearchList(nativeElement);
         }
-      );
+      );*/
     }
     else if (this.startPos >= 0 && !this.stopSearch) {
       if (!event.shiftKey &&
