@@ -173,10 +173,10 @@ var MentionDirective = (function () {
             var componentRef = this._viewContainerRef.createComponent(componentFactory);
             this.searchList = componentRef.instance;
             this.searchList.items = this.items;
-            if (this.items) {
-                this.searchList.hidden = false;
-            }
-            this.searchList.position(nativeElement, this.iframe, this.mobile);
+            //if (this.items) {
+            this.searchList.hidden = false;
+            //}
+            this.searchList.position(nativeElement, this.iframe);
             componentRef.instance['itemClick'].subscribe(function () {
                 nativeElement.focus();
                 var fakeKeydown = { "keyCode": KEY_ENTER, "wasClick": true };
@@ -186,10 +186,10 @@ var MentionDirective = (function () {
         else {
             this.searchList.activeIndex = 0;
             this.searchList.items = this.items;
-            if (this.items) {
-                this.searchList.hidden = false;
-            }
-            this.searchList.position(nativeElement, this.iframe, this.mobile);
+            //if (this.items) {
+            this.searchList.hidden = false;
+            //}
+            this.searchList.position(nativeElement, this.iframe);
             window.setTimeout(function () { return _this.searchList.resetScroll(); });
         }
     };
@@ -223,10 +223,6 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Function)
 ], MentionDirective.prototype, "mentionSelect", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], MentionDirective.prototype, "mobile", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)

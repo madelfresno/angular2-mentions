@@ -60,7 +60,7 @@ export class MentionListComponent {
   constructor(private _element: ElementRef) {}
 
   // lots of confusion here between relative coordinates and containers
-  position(nativeParentElement: HTMLInputElement, iframe: HTMLIFrameElement = null, isMobile: boolean = false) {
+  position(nativeParentElement: HTMLInputElement, iframe: HTMLIFrameElement = null) {
     let coords = { top: 0, left: 0 };    
     if (isInputOrTextAreaElement(nativeParentElement)) {
       // parent elements need to have postition:relative for this to work correctly?
@@ -114,8 +114,7 @@ export class MentionListComponent {
       }
     }
     // select the next item
-    this.activeIndex = Math.max(Math.min(this.activeIndex + 1, this.items.length - 1), 0);    
-    console.log(this.items.length, this.activeIndex);
+    this.activeIndex = Math.max(Math.min(this.activeIndex + 1, this.items.length - 1), 0);
   }
 
   activatePreviousItem() {    
@@ -133,7 +132,6 @@ export class MentionListComponent {
     }
     // select the previous item
     this.activeIndex = Math.max(Math.min(this.activeIndex - 1, this.items.length - 1), 0);
-    console.log(this.items.length, this.activeIndex);
   }
   
   resetScroll() {

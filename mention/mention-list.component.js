@@ -26,9 +26,8 @@ var MentionListComponent = (function () {
         this.itemClick = new core_1.EventEmitter();
     }
     // lots of confusion here between relative coordinates and containers
-    MentionListComponent.prototype.position = function (nativeParentElement, iframe, isMobile) {
+    MentionListComponent.prototype.position = function (nativeParentElement, iframe) {
         if (iframe === void 0) { iframe = null; }
-        if (isMobile === void 0) { isMobile = false; }
         var coords = { top: 0, left: 0 };
         if (mention_utils_1.isInputOrTextAreaElement(nativeParentElement)) {
             // parent elements need to have postition:relative for this to work correctly?
@@ -84,7 +83,6 @@ var MentionListComponent = (function () {
         }
         // select the next item
         this.activeIndex = Math.max(Math.min(this.activeIndex + 1, this.items.length - 1), 0);
-        console.log(this.items.length, this.activeIndex);
     };
     MentionListComponent.prototype.activatePreviousItem = function () {
         // adjust the scrollable-menu offset if the previous item is out of view
@@ -101,7 +99,6 @@ var MentionListComponent = (function () {
         }
         // select the previous item
         this.activeIndex = Math.max(Math.min(this.activeIndex - 1, this.items.length - 1), 0);
-        console.log(this.items.length, this.activeIndex);
     };
     MentionListComponent.prototype.resetScroll = function () {
         this.list.nativeElement.scrollTop = 0;

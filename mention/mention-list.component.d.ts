@@ -14,7 +14,7 @@ export declare class MentionListComponent {
     list: ElementRef;
     itemClick: EventEmitter<{}>;
     constructor(_element: ElementRef);
-    position(nativeParentElement: HTMLInputElement, iframe?: HTMLIFrameElement, isMobile?: boolean): void;
+    position(nativeParentElement: HTMLInputElement, iframe?: HTMLIFrameElement): void;
     readonly activeItem: any;
     activateNextItem(): void;
     activatePreviousItem(): void;

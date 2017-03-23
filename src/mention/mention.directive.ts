@@ -54,9 +54,7 @@ export class MentionDirective {
   @Input() scope: any;
 
   @Input() mentionSelect: (selection: string) => (string) = (selection: string) => selection;
-
-  @Input() mobile: boolean;
-
+  
   @Output() notifySelection: EventEmitter<any> = new EventEmitter<any>();
 
   setIframe(iframe: HTMLIFrameElement) {
@@ -199,10 +197,10 @@ export class MentionDirective {
       let componentRef = this._viewContainerRef.createComponent(componentFactory);
       this.searchList = componentRef.instance;
       this.searchList.items = this.items;
-      if (this.items) {
+      //if (this.items) {
         this.searchList.hidden = false;
-      }
-      this.searchList.position(nativeElement, this.iframe, this.mobile);
+      //}
+      this.searchList.position(nativeElement, this.iframe);
       componentRef.instance['itemClick'].subscribe(() => {
         nativeElement.focus();
         let fakeKeydown = {"keyCode":KEY_ENTER,"wasClick":true};
@@ -212,10 +210,10 @@ export class MentionDirective {
     else {
       this.searchList.activeIndex = 0;
       this.searchList.items = this.items;
-      if (this.items) {
+      //if (this.items) {
         this.searchList.hidden = false;
-      }
-      this.searchList.position(nativeElement, this.iframe, this.mobile);
+      //}
+      this.searchList.position(nativeElement, this.iframe);
       window.setTimeout(() => this.searchList.resetScroll());
     }
   }
