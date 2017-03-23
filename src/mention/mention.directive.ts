@@ -178,14 +178,16 @@ export class MentionDirective {
           this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
             (response) => {
               this.items = response;
-              this.showSearchList(nativeElement);
-              if (this.searchList) {
+              
+              window.setTimeout(() => {
+                this.showSearchList(nativeElement);
                 let regEx = new RegExp("^" + mention.substring(1), "i");
                 let matches = [];
                 matches = this.items.filter(e => e.name.match(regEx) != null);
                 this.searchList.items = matches;
-                this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
-              }
+                this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              
+              }, 1000);
+              
             }
           );
         }
