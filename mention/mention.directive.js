@@ -111,7 +111,8 @@ var MentionDirective = (function () {
                     this.searchList.hidden = this.stopSearch;
                     pos--;
                 }
-                else if (!this.searchList.hidden) {
+                else {
+                    this.showSearchList(nativeElement);
                     if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
                         this.stopEvent(event);
                         this.searchList.hidden = true;
