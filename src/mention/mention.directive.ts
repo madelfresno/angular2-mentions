@@ -171,11 +171,8 @@ export class MentionDirective {
           return false;
         }
         else {
-          // update search
-          console.log('startpos at update search', this.startPos);
-          console.log('pos at update search', pos);                    
-          console.log('val', val);
-          console.log('selection', window.getSelection());
+          // update search          
+          // We need to get the current selection instead of the textContent of the nativeElement
           val = window.getSelection().anchorNode.textContent;
           let mention = val.substring(this.startPos, pos);
           if (event.keyCode !== KEY_BACKSPACE) {
