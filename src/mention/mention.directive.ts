@@ -203,7 +203,7 @@ export class MentionDirective {
       let componentRef = this._viewContainerRef.createComponent(componentFactory);
       this.searchList = componentRef.instance;
       this.searchList.items = this.items;
-      if (this.items.length) {
+      if (this.searchList.items.length > 0) {
         this.searchList.hidden = false;
       }
       this.searchList.position(nativeElement, this.iframe);
@@ -216,7 +216,7 @@ export class MentionDirective {
     else {
       this.searchList.activeIndex = 0;
       this.searchList.items = this.items;
-      if (this.items.length) {
+      if (this.searchList.items.length > 0) {
         this.searchList.hidden = false;
       }
       this.searchList.position(nativeElement, this.iframe);
