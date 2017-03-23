@@ -154,6 +154,7 @@ var MentionDirective = (function () {
                 else {
                     // update search
                     console.log('startpos at update search', this.startPos);
+                    console.log('pos at update search', pos);
                     var mention_1 = val.substring(this.startPos, pos);
                     if (event.keyCode !== KEY_BACKSPACE) {
                         mention_1 += charPressed;
