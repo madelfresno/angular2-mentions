@@ -68,7 +68,6 @@ var MentionDirective = (function () {
         if (nativeElement === void 0) { nativeElement = this._element.nativeElement; }
         var val = mention_utils_1.getValue(nativeElement);
         var pos = mention_utils_1.getCaretPosition(nativeElement, this.iframe);
-        console.log('pos', pos);
         var charPressed = event.key;
         if (!charPressed) {
             var charCode = event.which || event.keyCode;
@@ -92,7 +91,6 @@ var MentionDirective = (function () {
         //console.log("keyHandler", this.startPos, pos, val, charPressed, event);
         if (charPressed == this.triggerChar) {
             this.startPos = pos;
-            console.log('startPos at triggerChar', this.startPos);
             this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
             this.stopSearch = false;
             this.searchAsync(this.callbackFn, '', window.getSelection()).subscribe(function (response) {
@@ -159,7 +157,6 @@ var MentionDirective = (function () {
                     if (event.keyCode !== KEY_BACKSPACE) {
                         mention_1 += charPressed;
                     }
-                    console.log(mention_1);
                     this.searchAsync(this.callbackFn, mention_1.substring(1), window.getSelection()).subscribe(function (response) {
                         _this.items = response;
                         var regEx = new RegExp("^" + mention_1.substring(1), "i");
