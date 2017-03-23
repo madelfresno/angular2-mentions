@@ -180,12 +180,14 @@ export class MentionDirective {
               this.items = response;
               if (this.items.length) {
                 this.showSearchList(nativeElement);
-              }              
-              /*let regEx = new RegExp("^" + mention.substring(1), "i");
-              let matches = [];
-              matches = this.items.filter(e => e.name.match(regEx) != null);
-              this.searchList.items = matches;
-              this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
+              }   
+              if (this.searchList) {           
+                let regEx = new RegExp("^" + mention.substring(1), "i");
+                let matches = [];
+                matches = this.items.filter(e => e.name.match(regEx) != null);
+                this.searchList.items = matches;
+                this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+              }
             }
           );
         }
@@ -199,7 +201,7 @@ export class MentionDirective {
       let componentRef = this._viewContainerRef.createComponent(componentFactory);
       this.searchList = componentRef.instance;
       this.searchList.items = this.items;
-      if (this.items) {
+      if (this.items.length) {
         this.searchList.hidden = false;
       }
       this.searchList.position(nativeElement, this.iframe);
@@ -212,7 +214,7 @@ export class MentionDirective {
     else {
       this.searchList.activeIndex = 0;
       this.searchList.items = this.items;
-      if (this.items) {
+      if (this.items.length) {
         this.searchList.hidden = false;
       }
       this.searchList.position(nativeElement, this.iframe);
