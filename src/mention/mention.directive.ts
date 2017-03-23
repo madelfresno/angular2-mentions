@@ -180,14 +180,12 @@ export class MentionDirective {
               this.items = response;
               if (this.items.length) {
                 this.showSearchList(nativeElement);
-              }   
-              if (this.searchList) {           
-                let regEx = new RegExp("^" + mention.substring(1), "i");
-                let matches = [];
-                matches = this.items.filter(e => e.name.match(regEx) != null);
-                this.searchList.items = matches;
-                //this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
-              }
+              }              
+              /*let regEx = new RegExp("^" + mention.substring(1), "i");
+              let matches = [];
+              matches = this.items.filter(e => e.name.match(regEx) != null);
+              this.searchList.items = matches;
+              this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
             }
           );
         }

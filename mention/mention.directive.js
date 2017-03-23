@@ -149,21 +149,20 @@ var MentionDirective = (function () {
                     // update search          
                     // We need to get the current selection instead of the textContent of the nativeElement
                     val = window.getSelection().anchorNode.textContent;
-                    var mention_1 = val.substring(this.startPos, pos);
+                    var mention = val.substring(this.startPos, pos);
                     if (event.keyCode !== KEY_BACKSPACE) {
-                        mention_1 += charPressed;
+                        mention += charPressed;
                     }
-                    this.searchAsync(this.callbackFn, mention_1.substring(1), window.getSelection()).subscribe(function (response) {
+                    this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(function (response) {
                         _this.items = response;
                         if (_this.items.length) {
                             _this.showSearchList(nativeElement);
                         }
-                        if (_this.searchList) {
-                            var regEx_1 = new RegExp("^" + mention_1.substring(1), "i");
-                            var matches = [];
-                            matches = _this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
-                            _this.searchList.items = matches;
-                        }
+                        /*let regEx = new RegExp("^" + mention.substring(1), "i");
+                        let matches = [];
+                        matches = this.items.filter(e => e.name.match(regEx) != null);
+                        this.searchList.items = matches;
+                        this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
                     });
                 }
             }
