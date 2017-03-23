@@ -101,7 +101,7 @@ export class MentionListComponent {
   }
 
   activateNextItem() {
-    console.log(this.items.length);
+    console.log(this.items.length, this.activeIndex);
     // adjust scrollable-menu offset if the next item is out of view
     let listEl: HTMLElement = this.list.nativeElement;
     let activeEl = listEl.getElementsByClassName('active').item(0);
@@ -119,7 +119,7 @@ export class MentionListComponent {
   }
 
   activatePreviousItem() {
-    console.log(this.items.length);
+    console.log(this.items.length, this.activeIndex);
     // adjust the scrollable-menu offset if the previous item is out of view
     let listEl: HTMLElement = this.list.nativeElement;
     let activeEl = listEl.getElementsByClassName('active').item(0);
