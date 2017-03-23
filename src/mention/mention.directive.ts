@@ -173,8 +173,9 @@ export class MentionDirective {
         else {
           // update search
           console.log('startpos at update search', this.startPos);
-          console.log('pos at update search', pos);
+          console.log('pos at update search', pos);                    
           console.log('val', val);
+          console.log('selection', window.getSelection());
           let mention = val.substring(this.startPos, pos);
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
