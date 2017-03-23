@@ -178,16 +178,14 @@ export class MentionDirective {
           this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
             (response) => {
               this.items = response;
-              
-              window.setTimeout(() => {
+              if (this.items.length) {
                 this.showSearchList(nativeElement);
-                let regEx = new RegExp("^" + mention.substring(1), "i");
-                let matches = [];
-                matches = this.items.filter(e => e.name.match(regEx) != null);
-                this.searchList.items = matches;
-                this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              
-              }, 1000);
-              
+              }              
+              /*let regEx = new RegExp("^" + mention.substring(1), "i");
+              let matches = [];
+              matches = this.items.filter(e => e.name.match(regEx) != null);
+              this.searchList.items = matches;
+              this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
             }
           );
         }
@@ -201,9 +199,9 @@ export class MentionDirective {
       let componentRef = this._viewContainerRef.createComponent(componentFactory);
       this.searchList = componentRef.instance;
       this.searchList.items = this.items;
-      //if (this.items) {
+      if (this.items) {
         this.searchList.hidden = false;
-      //}
+      }
       this.searchList.position(nativeElement, this.iframe);
       componentRef.instance['itemClick'].subscribe(() => {
         nativeElement.focus();
@@ -214,9 +212,9 @@ export class MentionDirective {
     else {
       this.searchList.activeIndex = 0;
       this.searchList.items = this.items;
-      //if (this.items) {
+      if (this.items) {
         this.searchList.hidden = false;
-      //}
+      }
       this.searchList.position(nativeElement, this.iframe);
       window.setTimeout(() => this.searchList.resetScroll());
     }

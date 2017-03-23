@@ -149,20 +149,20 @@ var MentionDirective = (function () {
                     // update search          
                     // We need to get the current selection instead of the textContent of the nativeElement
                     val = window.getSelection().anchorNode.textContent;
-                    var mention_1 = val.substring(this.startPos, pos);
+                    var mention = val.substring(this.startPos, pos);
                     if (event.keyCode !== KEY_BACKSPACE) {
-                        mention_1 += charPressed;
+                        mention += charPressed;
                     }
-                    this.searchAsync(this.callbackFn, mention_1.substring(1), window.getSelection()).subscribe(function (response) {
+                    this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(function (response) {
                         _this.items = response;
-                        window.setTimeout(function () {
+                        if (_this.items.length) {
                             _this.showSearchList(nativeElement);
-                            var regEx = new RegExp("^" + mention_1.substring(1), "i");
-                            var matches = [];
-                            matches = _this.items.filter(function (e) { return e.name.match(regEx) != null; });
-                            _this.searchList.items = matches;
-                            _this.searchList.hidden = matches.length == 0 || pos <= _this.startPos;
-                        }, 1000);
+                        }
+                        /*let regEx = new RegExp("^" + mention.substring(1), "i");
+                        let matches = [];
+                        matches = this.items.filter(e => e.name.match(regEx) != null);
+                        this.searchList.items = matches;
+                        this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
                     });
                 }
             }
@@ -175,9 +175,9 @@ var MentionDirective = (function () {
             var componentRef = this._viewContainerRef.createComponent(componentFactory);
             this.searchList = componentRef.instance;
             this.searchList.items = this.items;
-            //if (this.items) {
-            this.searchList.hidden = false;
-            //}
+            if (this.items) {
+                this.searchList.hidden = false;
+            }
             this.searchList.position(nativeElement, this.iframe);
             componentRef.instance['itemClick'].subscribe(function () {
                 nativeElement.focus();
@@ -188,9 +188,9 @@ var MentionDirective = (function () {
         else {
             this.searchList.activeIndex = 0;
             this.searchList.items = this.items;
-            //if (this.items) {
-            this.searchList.hidden = false;
-            //}
+            if (this.items) {
+                this.searchList.hidden = false;
+            }
             this.searchList.position(nativeElement, this.iframe);
             window.setTimeout(function () { return _this.searchList.resetScroll(); });
         }
