@@ -95,7 +95,7 @@ var MentionDirective = (function () {
             this.stopSearch = false;
             this.searchAsync(this.callbackFn, '', window.getSelection()).subscribe(function (response) {
                 _this.items = response;
-                _this.showSearchList(nativeElement);
+                //this.showSearchList(nativeElement);
             });
         }
         else if (this.startPos >= 0 && !this.stopSearch) {
@@ -112,7 +112,6 @@ var MentionDirective = (function () {
                     pos--;
                 }
                 else {
-                    this.showSearchList(nativeElement);
                     if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
                         this.stopEvent(event);
                         this.searchList.hidden = true;
@@ -160,6 +159,7 @@ var MentionDirective = (function () {
                     }
                     this.searchAsync(this.callbackFn, mention_1.substring(1), window.getSelection()).subscribe(function (response) {
                         _this.items = response;
+                        _this.showSearchList(nativeElement);
                         var regEx = new RegExp("^" + mention_1.substring(1), "i");
                         var matches = [];
                         matches = _this.items.filter(function (e) { return e.name.match(regEx) != null; });

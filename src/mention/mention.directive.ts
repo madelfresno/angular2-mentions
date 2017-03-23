@@ -111,7 +111,7 @@ export class MentionDirective {
       this.searchAsync(this.callbackFn, '', window.getSelection()).subscribe(
         (response) => {
           this.items = response;
-          this.showSearchList(nativeElement);
+          //this.showSearchList(nativeElement);
         }
       );
     }
@@ -130,8 +130,7 @@ export class MentionDirective {
           pos--;
         }
         //else if (!this.searchList.hidden) {
-        else {
-          this.showSearchList(nativeElement);
+        else {          
           if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
             this.stopEvent(event);
             this.searchList.hidden = true;
@@ -181,6 +180,7 @@ export class MentionDirective {
           this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
             (response) => {
               this.items = response;
+              this.showSearchList(nativeElement);
               let regEx = new RegExp("^" + mention.substring(1), "i");
               let matches = [];
               matches = this.items.filter(e => e.name.match(regEx) != null);
