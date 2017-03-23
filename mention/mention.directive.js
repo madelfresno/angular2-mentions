@@ -163,7 +163,6 @@ var MentionDirective = (function () {
                             var matches = [];
                             matches = _this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
                             _this.searchList.items = matches;
-                            _this.searchList.hidden = matches.length == 0 || pos <= _this.startPos;
                         }
                     });
                 }
