@@ -205,7 +205,7 @@ export class MentionDirective {
       let componentRef = this._viewContainerRef.createComponent(componentFactory);
       //componentRef.instance.loadingImgPath = this.loadingImgPath;
       this.searchList = componentRef.instance;
-      this.loadingImgPath = this.loadingImgPath;
+      this.searchList.loadingImgPath = this.loadingImgPath;
       this.searchList.items = this.items;
       if (this.searchList.items.length > 0) {
         this.searchList.hidden = false;
@@ -219,7 +219,7 @@ export class MentionDirective {
     }
     else {
       this.searchList.activeIndex = 0;
-      this.loadingImgPath = this.loadingImgPath;
+      this.searchList.loadingImgPath = this.loadingImgPath;
       this.searchList.items = this.items;
       if (this.searchList.items.length > 0) {
         this.searchList.hidden = false;
