@@ -176,9 +176,8 @@ var MentionDirective = (function () {
         if (this.searchList == null) {
             var componentFactory = this._componentResolver.resolveComponentFactory(mention_list_component_1.MentionListComponent);
             var componentRef = this._viewContainerRef.createComponent(componentFactory);
-            //componentRef.instance.loadingImgPath = this.loadingImgPath;
+            componentRef.instance.loadingImgPath = this.loadingImgPath;
             this.searchList = componentRef.instance;
-            this.searchList.loadingImgPath = this.loadingImgPath;
             this.searchList.items = this.items;
             if (this.searchList.items.length > 0) {
                 this.searchList.hidden = false;
