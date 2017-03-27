@@ -23,7 +23,6 @@ var MentionListComponent = (function () {
         this.items = [];
         this.activeIndex = 0;
         this.hidden = true;
-        this.loadingImgPath = 'prueba.jpeg';
         this.itemClick = new core_1.EventEmitter();
     }
     // lots of confusion here between relative coordinates and containers
