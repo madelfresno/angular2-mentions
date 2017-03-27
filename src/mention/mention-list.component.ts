@@ -1,4 +1,4 @@
-import {Component, ElementRef, Output, EventEmitter, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 
 import { isInputOrTextAreaElement, getContentEditableCaretCoords } from './mention-utils';
 import { getCaretCoordinates } from './caret-coords';
@@ -58,6 +58,7 @@ export class MentionListComponent {
   data: any;
   activeIndex: number = 0;
   hidden: boolean = true;
+  @Input() loadingImgPath: string;
   @ViewChild('list') list : ElementRef;
   @Output() itemClick = new EventEmitter();
   constructor(

@@ -106,6 +106,10 @@ var MentionListComponent = (function () {
     return MentionListComponent;
 }());
 __decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], MentionListComponent.prototype, "loadingImgPath", void 0);
+__decorate([
     core_1.ViewChild('list'),
     __metadata("design:type", core_1.ElementRef)
 ], MentionListComponent.prototype, "list", void 0);

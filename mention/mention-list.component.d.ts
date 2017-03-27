@@ -11,6 +11,7 @@ export declare class MentionListComponent {
     data: any;
     activeIndex: number;
     hidden: boolean;
+    loadingImgPath: string;
     list: ElementRef;
     itemClick: EventEmitter<{}>;
     constructor(_element: ElementRef);
