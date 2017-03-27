@@ -7,14 +7,14 @@ import { ElementRef, EventEmitter } from '@angular/core';
  */
 export declare class MentionListComponent {
     private _element;
+    loadingImgPath: string;
     items: any[];
     data: any;
     activeIndex: number;
     hidden: boolean;
-    loadingImgPath: string;
     list: ElementRef;
     itemClick: EventEmitter<{}>;
-    constructor(_element: ElementRef);
+    constructor(_element: ElementRef, loadingImgPath: string);
     position(nativeParentElement: HTMLInputElement, iframe?: HTMLIFrameElement): void;
     readonly activeItem: any;
     activateNextItem(): void;

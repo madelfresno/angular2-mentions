@@ -18,8 +18,9 @@ var caret_coords_1 = require("./caret-coords");
  * Copyright (c) 2016 Dan MacFarlane
  */
 var MentionListComponent = (function () {
-    function MentionListComponent(_element) {
+    function MentionListComponent(_element, loadingImgPath) {
         this._element = _element;
+        this.loadingImgPath = loadingImgPath;
         this.items = [];
         this.activeIndex = 0;
         this.hidden = true;
@@ -106,10 +107,6 @@ var MentionListComponent = (function () {
     return MentionListComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], MentionListComponent.prototype, "loadingImgPath", void 0);
-__decorate([
     core_1.ViewChild('list'),
     __metadata("design:type", core_1.ElementRef)
 ], MentionListComponent.prototype, "list", void 0);
@@ -123,6 +120,6 @@ MentionListComponent = __decorate([
         styles: ["\n      .scrollable-menu {\n        display: block;\n        height: auto;\n        max-height: 300px;\n        overflow: auto;\n      },      \n    ", "\n      [hidden] {\n        display: none;\n      }\n    "],
         template: "\n    <ul class=\"dropdown-menu scrollable-menu typeahead-mention\" #list [hidden]=\"hidden\">\n        <li>\n          <img src=\"{{loadingImgPath}}\" alt=\"spinner\" class=\"spinner\" />\n        </li>\n        <li *ngFor=\"let item of items; let i = index\" [class.active]=\"activeIndex==i\" (mousedown)=\"activeIndex=i;itemClick.emit();$event.preventDefault()\">            \n          <a class=\"dropdown-cnt-img-profile\">\n            <div class=\"cnt-img-profile\">\n              <img class=\"profile-clip\" width=\"100\" height=\"100\" clip-path=\"url(#svgPath)\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" src=\"{{item.img}}\">\n              <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" width=\"100\" height=\"100\" style=\"\" class=\"svg\">\n                <defs>\n                  <style>\n                    .svg-border {\n                      fill: none;\n                    }\n                  </style>\n                  <clipPath id=\"svgPath\">\n                    <path class=\"cls-1\" d=\"M81.784,82.488,56.656,96.994c-5.778,3.333-15.225,3.333-21.027,0L10.5,82.488C4.723,79.155,0,70.955,0,64.29V35.278c0-6.665,4.723-14.865,10.5-18.2L35.629,2.575c5.778-3.333,15.225-3.333,21.027,0L81.784,17.08c5.778,3.333,10.5,11.533,10.5,18.2V64.29C92.285,70.955,87.562,79.155,81.784,82.488Z\" width=\"100\" height=\"100\"></path>\n                  </clipPath>\n                </defs>\n              </svg>\n            </div>\n          </a>\n          <a class=\"item-info\">\n            {{item.name}}\n          </a>\n        </li>\n    </ul>\n    "
     }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
+    __metadata("design:paramtypes", [core_1.ElementRef, String])
 ], MentionListComponent);
 exports.MentionListComponent = MentionListComponent;

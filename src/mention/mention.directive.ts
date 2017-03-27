@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, Output, EventEmitter, ComponentFactoryResolver, ReflectiveInjector, Provider, ViewContainerRef } from "@angular/core";
+import { Directive, ElementRef, Input, Output, EventEmitter, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
 import { Observable } from 'rxjs';
 import { MentionListComponent } from './mention-list.component';
 import { getValue, insertValue, getCaretPosition, setCaretPosition } from './mention-utils';
@@ -201,28 +201,16 @@ export class MentionDirective {
 
   showSearchList(nativeElement: HTMLInputElement) {
     if (this.searchList == null) {
-
-      let inputProvider: Provider[];
-      inputProvider = [{ 
-        provide: 'loadingImgPath',
-        useValue: this.loadingImgPath
-      }];
-      let resolvedInput = ReflectiveInjector.resolve(inputProvider);
-
-      // We create an injector out of the data we want to pass down and this components injector
-      let injector = ReflectiveInjector.fromResolvedProviders(resolvedInput, this._viewContainerRef.parentInjector);
       let componentFactory = this._componentResolver.resolveComponentFactory(MentionListComponent);
-      let component = componentFactory.create(injector);
-
-      //let componentRef = this._viewContainerRef.createComponent(componentFactory);
-      this._viewContainerRef.insert(component.hostView);
-      this.searchList = component.instance;
+      let componentRef = this._viewContainerRef.createComponent(componentFactory);
+      componentRef.instance.loadingImgPath = this.loadingImgPath;
+      this.searchList = componentRef.instance;
       this.searchList.items = this.items;
       if (this.searchList.items.length > 0) {
         this.searchList.hidden = false;
       }
       this.searchList.position(nativeElement, this.iframe);
-      component.instance['itemClick'].subscribe(() => {
+      componentRef.instance['itemClick'].subscribe(() => {
         nativeElement.focus();
         let fakeKeydown = {"keyCode":KEY_ENTER,"wasClick":true};
         this.keyHandler(fakeKeydown, nativeElement);

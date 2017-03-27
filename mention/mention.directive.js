@@ -174,25 +174,16 @@ var MentionDirective = (function () {
     MentionDirective.prototype.showSearchList = function (nativeElement) {
         var _this = this;
         if (this.searchList == null) {
-            var inputProvider = void 0;
-            inputProvider = [{
-                    provide: 'loadingImgPath',
-                    useValue: this.loadingImgPath
-                }];
-            var resolvedInput = core_1.ReflectiveInjector.resolve(inputProvider);
-            // We create an injector out of the data we want to pass down and this components injector
-            var injector = core_1.ReflectiveInjector.fromResolvedProviders(resolvedInput, this._viewContainerRef.parentInjector);
             var componentFactory = this._componentResolver.resolveComponentFactory(mention_list_component_1.MentionListComponent);
-            var component = componentFactory.create(injector);
-            //let componentRef = this._viewContainerRef.createComponent(componentFactory);
-            this._viewContainerRef.insert(component.hostView);
-            this.searchList = component.instance;
+            var componentRef = this._viewContainerRef.createComponent(componentFactory);
+            componentRef.instance.loadingImgPath = this.loadingImgPath;
+            this.searchList = componentRef.instance;
             this.searchList.items = this.items;
             if (this.searchList.items.length > 0) {
                 this.searchList.hidden = false;
             }
             this.searchList.position(nativeElement, this.iframe);
-            component.instance['itemClick'].subscribe(function () {
+            componentRef.instance['itemClick'].subscribe(function () {
                 nativeElement.focus();
                 var fakeKeydown = { "keyCode": KEY_ENTER, "wasClick": true };
                 _this.keyHandler(fakeKeydown, nativeElement);

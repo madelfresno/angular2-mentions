@@ -57,12 +57,12 @@ export class MentionListComponent {
   items = [];
   data: any;
   activeIndex: number = 0;
-  hidden: boolean = true;
-  @Input() loadingImgPath: string;
+  hidden: boolean = true; 
   @ViewChild('list') list : ElementRef;
   @Output() itemClick = new EventEmitter();
   constructor(
-    private _element: ElementRef
+    private _element: ElementRef,
+    public loadingImgPath: string
   ) {}
 
   // lots of confusion here between relative coordinates and containers
