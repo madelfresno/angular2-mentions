@@ -215,6 +215,7 @@ export class MentionDirective {
       let component = componentFactory.create(injector);
 
       //let componentRef = this._viewContainerRef.createComponent(componentFactory);
+      this._viewContainerRef.insert(component.hostView);
       this.searchList = component.instance;
       this.searchList.items = this.items;
       if (this.searchList.items.length > 0) {
