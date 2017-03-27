@@ -109,13 +109,7 @@ export class MentionDirective {
     if (charPressed == this.triggerChar) {
       this.startPos = pos;      
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
-      this.stopSearch = false;
-      /*this.searchAsync(this.callbackFn, '', window.getSelection()).subscribe(
-        (response) => {
-          this.items = response;
-          //this.showSearchList(nativeElement);
-        }
-      );*/
+      this.stopSearch = false;      
     }
     else if (this.startPos >= 0 && !this.stopSearch) {
       if (!event.shiftKey &&
@@ -124,14 +118,10 @@ export class MentionDirective {
           !event.ctrlKey &&
           pos > this.startPos
       ) {
-        /*if (event.keyCode === KEY_SPACE) {
-          this.startPos = -1;
-        }
-        else*/ if (event.keyCode === KEY_BACKSPACE && pos > 0) {
+        if (event.keyCode === KEY_BACKSPACE && pos > 0) {
           this.searchList.hidden = this.stopSearch;
           pos--;
         }
-        //else if (!this.searchList.hidden) {
         else {          
           if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
             this.stopEvent(event);
