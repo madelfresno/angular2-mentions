@@ -58,7 +58,7 @@ export class MentionListComponent {
   data: any;
   activeIndex: number = 0;
   hidden: boolean = true; 
-  loadingImgPath: string;
+  loadingImgPath: string = 'prueba.jpeg';
   @ViewChild('list') list : ElementRef;
   @Output() itemClick = new EventEmitter();
   constructor(
