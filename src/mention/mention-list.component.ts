@@ -24,10 +24,7 @@ import { getCaretCoordinates } from './caret-coords';
       }
     `],
     template: `
-    <ul class="dropdown-menu scrollable-menu typeahead-mention" #list [hidden]="hidden">
-        <li *ngIf="!items || (items.length === 0)">
-          <img [src]="loadingImgPath" alt="spinner" class="spinner" />
-        </li>
+    <ul class="dropdown-menu scrollable-menu typeahead-mention" #list [hidden]="hidden">        
         <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">            
           <a class="dropdown-cnt-img-profile">
             <div class="cnt-img-profile">
