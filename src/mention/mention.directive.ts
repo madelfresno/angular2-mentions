@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, Output, EventEmitter, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
+import { Directive, ElementRef, Input, Output, EventEmitter, ComponentFactoryResolver, ReflectiveInjector, Provider, ViewContainerRef } from "@angular/core";
 import { Observable } from 'rxjs';
 import { MentionListComponent } from './mention-list.component';
 import { getValue, insertValue, getCaretPosition, setCaretPosition } from './mention-utils';
@@ -56,8 +56,10 @@ export class MentionDirective {
   @Input() scope: any;
 
   @Input() mentionSelect: (selection: string) => (string) = (selection: string) => selection;
+
+  @Input() loadingImgPath: string;
   
-  @Output() notifySelection: EventEmitter<any> = new EventEmitter<any>();
+  @Output() notifySelection: EventEmitter<any> = new EventEmitter<any>();  
 
   setIframe(iframe: HTMLIFrameElement) {
     this.iframe = iframe;
@@ -199,6 +201,16 @@ export class MentionDirective {
 
   showSearchList(nativeElement: HTMLInputElement) {
     if (this.searchList == null) {
+
+      let inputProvider: Provider[];
+      inputProvider = [{ 
+        provide: 'loadingImgPath',
+        useValue: this.loadingImgPath
+      }];
+      let resolvedInput = ReflectiveInjector.resolve(inputProvider);
+
+      // We create an injector out of the data we want to pass down and this components injector
+      let injector = ReflectiveInjector.fromResolvedProviders(resolvedInput, this._viewContainerRef.parentInjector);
       let componentFactory = this._componentResolver.resolveComponentFactory(MentionListComponent);
       let componentRef = this._viewContainerRef.createComponent(componentFactory);
       this.searchList = componentRef.instance;

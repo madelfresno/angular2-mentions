@@ -174,6 +174,14 @@ var MentionDirective = (function () {
     MentionDirective.prototype.showSearchList = function (nativeElement) {
         var _this = this;
         if (this.searchList == null) {
+            var inputProvider = void 0;
+            inputProvider = [{
+                    provide: 'loadingImgPath',
+                    useValue: this.loadingImgPath
+                }];
+            var resolvedInput = core_1.ReflectiveInjector.resolve(inputProvider);
+            // We create an injector out of the data we want to pass down and this components injector
+            var injector = core_1.ReflectiveInjector.fromResolvedProviders(resolvedInput, this._viewContainerRef.parentInjector);
             var componentFactory = this._componentResolver.resolveComponentFactory(mention_list_component_1.MentionListComponent);
             var componentRef = this._viewContainerRef.createComponent(componentFactory);
             this.searchList = componentRef.instance;
@@ -232,6 +240,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Function)
 ], MentionDirective.prototype, "mentionSelect", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], MentionDirective.prototype, "loadingImgPath", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)

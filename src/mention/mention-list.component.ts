@@ -60,7 +60,9 @@ export class MentionListComponent {
   hidden: boolean = true;
   @ViewChild('list') list : ElementRef;
   @Output() itemClick = new EventEmitter();
-  constructor(private _element: ElementRef) {}
+  constructor(
+    private _element: ElementRef
+  ) {}
 
   // lots of confusion here between relative coordinates and containers
   position(nativeParentElement: HTMLInputElement, iframe: HTMLIFrameElement = null) {

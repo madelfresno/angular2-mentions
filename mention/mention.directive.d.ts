@@ -25,6 +25,7 @@ export declare class MentionDirective {
     callbackFn: Function;
     scope: any;
     mentionSelect: (selection: string) => (string);
+    loadingImgPath: string;
     notifySelection: EventEmitter<any>;
     setIframe(iframe: HTMLIFrameElement): void;
     stopEvent(event: any): void;
