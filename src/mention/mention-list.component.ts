@@ -26,7 +26,7 @@ import { getCaretCoordinates } from './caret-coords';
     template: `
     <ul class="dropdown-menu scrollable-menu typeahead-mention" #list [hidden]="hidden">
         <li>
-          <img src="{{loadingImgPath}}" alt="spinner" class="spinner" />
+          <img [src]="loadingImgPath" alt="spinner" class="spinner" />
         </li>
         <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">            
           <a class="dropdown-cnt-img-profile">
@@ -58,7 +58,7 @@ export class MentionListComponent {
   data: any;
   activeIndex: number = 0;
   hidden: boolean = true; 
-  loadingImgPath: string
+  loadingImgPath: string;
   @ViewChild('list') list : ElementRef;
   @Output() itemClick = new EventEmitter();
   constructor(
