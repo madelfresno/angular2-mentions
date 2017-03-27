@@ -183,14 +183,15 @@ var MentionDirective = (function () {
             // We create an injector out of the data we want to pass down and this components injector
             var injector = core_1.ReflectiveInjector.fromResolvedProviders(resolvedInput, this._viewContainerRef.parentInjector);
             var componentFactory = this._componentResolver.resolveComponentFactory(mention_list_component_1.MentionListComponent);
-            var componentRef = this._viewContainerRef.createComponent(componentFactory);
-            this.searchList = componentRef.instance;
+            var component = componentFactory.create(injector);
+            //let componentRef = this._viewContainerRef.createComponent(componentFactory);
+            this.searchList = component.instance;
             this.searchList.items = this.items;
             if (this.searchList.items.length > 0) {
                 this.searchList.hidden = false;
             }
             this.searchList.position(nativeElement, this.iframe);
-            componentRef.instance['itemClick'].subscribe(function () {
+            component.instance['itemClick'].subscribe(function () {
                 nativeElement.focus();
                 var fakeKeydown = { "keyCode": KEY_ENTER, "wasClick": true };
                 _this.keyHandler(fakeKeydown, nativeElement);
