@@ -20,7 +20,7 @@ import { getCaretCoordinates } from './caret-coords';
       },      
     `,`
       [hidden] {
-        display: none;
+        display: none !important;
       }
     `],
     template: `
