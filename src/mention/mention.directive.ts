@@ -180,6 +180,16 @@ export class MentionDirective {
                     this.searchList.items = matches;
                     this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
                   }, 0);
+                } else {
+                  // This would go inside a setTimeout
+                  this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
+                    (response) => {
+                      this.items = response;
+                      if (this.items.length) {
+                        this.showSearchList(nativeElement);
+                      }                              
+                    }
+                  );
                 }
             } else { 
               // This would go inside a setTimeout

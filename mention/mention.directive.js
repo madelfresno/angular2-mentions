@@ -163,6 +163,15 @@ var MentionDirective = (function () {
                                     _this.searchList.hidden = matches_1.length == 0 || pos <= _this.startPos;
                                 }, 0);
                             }
+                            else {
+                                // This would go inside a setTimeout
+                                this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(function (response) {
+                                    _this.items = response;
+                                    if (_this.items.length) {
+                                        _this.showSearchList(nativeElement);
+                                    }
+                                });
+                            }
                         }
                         else {
                             // This would go inside a setTimeout
