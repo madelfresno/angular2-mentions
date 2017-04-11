@@ -174,7 +174,7 @@ export class MentionDirective {
                 let regEx = new RegExp("^" + mention.substring(1), "i");
                 let matches = [];
                 matches = this.items.filter(e => e.name.match(regEx) != null);
-                if (matches) {                  
+                if (matches.length) {                  
                   setTimeout(() => {
                     this.searchList.items = matches;
                     this.searchList.hidden = matches.length == 0 || pos <= this.startPos;

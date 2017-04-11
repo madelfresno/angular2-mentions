@@ -156,7 +156,7 @@ var MentionDirective = (function () {
                             var regEx_1 = new RegExp("^" + mention.substring(1), "i");
                             var matches_1 = [];
                             matches_1 = this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
-                            if (matches_1) {
+                            if (matches_1.length) {
                                 setTimeout(function () {
                                     _this.searchList.items = matches_1;
                                     _this.searchList.hidden = matches_1.length == 0 || pos <= _this.startPos;
