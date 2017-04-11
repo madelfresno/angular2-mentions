@@ -177,8 +177,8 @@ export class MentionDirective {
                 if (matches.length) {                  
                   setTimeout(() => {
                     this.showSearchList(nativeElement);
-                    //this.searchList.items = matches;
-                    //this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+                    this.searchList.items = matches;
+                    this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
                   }, 0);
                 }
             } else { 
