@@ -169,20 +169,26 @@ export class MentionDirective {
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
           }    
-          if (mention.substring(1).length >= this.minCharacters) {      
-            this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
-              (response) => {
-                this.items = response;
-                if (this.items.length) {
-                  this.showSearchList(nativeElement);
-                }              
-                /*let regEx = new RegExp("^" + mention.substring(1), "i");
+          if (mention.substring(1).length >= this.minCharacters) {     
+            if (this.items) {
+                let regEx = new RegExp("^" + mention.substring(1), "i");
                 let matches = [];
                 matches = this.items.filter(e => e.name.match(regEx) != null);
-                this.searchList.items = matches;
-                this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
-              }
-            );
+                if (matches) {
+                  this.searchList.items = matches;
+                  this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+                }
+            } else { 
+              // This would go inside a setTimeout
+              this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
+                (response) => {
+                  this.items = response;
+                  if (this.items.length) {
+                    this.showSearchList(nativeElement);
+                  }                              
+                }
+              );
+            }
           }
         }
       }

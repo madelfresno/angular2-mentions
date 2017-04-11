@@ -152,17 +152,24 @@ var MentionDirective = (function () {
                         mention += charPressed;
                     }
                     if (mention.substring(1).length >= this.minCharacters) {
-                        this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(function (response) {
-                            _this.items = response;
-                            if (_this.items.length) {
-                                _this.showSearchList(nativeElement);
+                        if (this.items) {
+                            var regEx_1 = new RegExp("^" + mention.substring(1), "i");
+                            var matches = [];
+                            matches = this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
+                            if (matches) {
+                                this.searchList.items = matches;
+                                this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
                             }
-                            /*let regEx = new RegExp("^" + mention.substring(1), "i");
-                            let matches = [];
-                            matches = this.items.filter(e => e.name.match(regEx) != null);
-                            this.searchList.items = matches;
-                            this.searchList.hidden = matches.length == 0 || pos <= this.startPos;              */
-                        });
+                        }
+                        else {
+                            // This would go inside a setTimeout
+                            this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(function (response) {
+                                _this.items = response;
+                                if (_this.items.length) {
+                                    _this.showSearchList(nativeElement);
+                                }
+                            });
+                        }
                     }
                 }
             }
