@@ -154,12 +154,13 @@ var MentionDirective = (function () {
                     if (mention.substring(1).length >= this.minCharacters) {
                         if (this.items) {
                             var regEx_1 = new RegExp("^" + mention.substring(1), "i");
-                            var matches_1 = [];
-                            matches_1 = this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
-                            if (matches_1.length) {
+                            var matches = [];
+                            matches = this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
+                            if (matches.length) {
                                 setTimeout(function () {
-                                    _this.searchList.items = matches_1;
-                                    _this.searchList.hidden = matches_1.length == 0 || pos <= _this.startPos;
+                                    _this.showSearchList(nativeElement);
+                                    //this.searchList.items = matches;
+                                    //this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
                                 }, 0);
                             }
                         }

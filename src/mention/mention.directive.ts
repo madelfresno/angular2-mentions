@@ -176,8 +176,9 @@ export class MentionDirective {
                 matches = this.items.filter(e => e.name.match(regEx) != null);
                 if (matches.length) {                  
                   setTimeout(() => {
-                    this.searchList.items = matches;
-                    this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+                    this.showSearchList(nativeElement);
+                    //this.searchList.items = matches;
+                    //this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
                   }, 0);
                 }
             } else { 
