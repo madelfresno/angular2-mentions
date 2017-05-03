@@ -29,6 +29,7 @@ const KEY_2 = 50;
   }
 })
 export class MentionDirective {
+  initialItems: any;
   items: any;
   startPos: number;
   startNode;
@@ -174,10 +175,10 @@ export class MentionDirective {
             mention += charPressed;
           }    
           if (mention.substring(1).length >= this.minCharacters) {     
-            if (this.items) {
+            if (this.initialItems) {
                 let regEx = new RegExp("^" + mention.substring(1), "i");
                 let matches = [];
-                matches = this.items.filter(e => e.name.match(regEx) != null);
+                matches = this.initialItems.filter(e => e.name.match(regEx) != null);
                 if (matches.length) {                  
                   setTimeout(() => {
                     this.items = matches;
@@ -208,10 +209,10 @@ export class MentionDirective {
               );
             }
           } else {
-            if (this.items) {
+            if (this.initialItems) {
                 let regEx = new RegExp("^" + mention.substring(1), "i");
                 let matches = [];
-                matches = this.items.filter(e => e.name.match(regEx) != null);
+                matches = this.initialItems.filter(e => e.name.match(regEx) != null);
                 if (matches.length) {                  
                   setTimeout(() => {
                     this.items = matches;

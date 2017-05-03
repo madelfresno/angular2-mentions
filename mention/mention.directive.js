@@ -156,10 +156,10 @@ var MentionDirective = (function () {
                         mention += charPressed;
                     }
                     if (mention.substring(1).length >= this.minCharacters) {
-                        if (this.items) {
+                        if (this.initialItems) {
                             var regEx_1 = new RegExp("^" + mention.substring(1), "i");
                             var matches_1 = [];
-                            matches_1 = this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
+                            matches_1 = this.initialItems.filter(function (e) { return e.name.match(regEx_1) != null; });
                             if (matches_1.length) {
                                 setTimeout(function () {
                                     _this.items = matches_1;
@@ -189,10 +189,10 @@ var MentionDirective = (function () {
                         }
                     }
                     else {
-                        if (this.items) {
+                        if (this.initialItems) {
                             var regEx_2 = new RegExp("^" + mention.substring(1), "i");
                             var matches_2 = [];
-                            matches_2 = this.items.filter(function (e) { return e.name.match(regEx_2) != null; });
+                            matches_2 = this.initialItems.filter(function (e) { return e.name.match(regEx_2) != null; });
                             if (matches_2.length) {
                                 setTimeout(function () {
                                     _this.items = matches_2;

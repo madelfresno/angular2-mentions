@@ -11,6 +11,7 @@ export declare class MentionDirective {
     private _element;
     private _componentResolver;
     private _viewContainerRef;
+    initialItems: any;
     items: any;
     startPos: number;
     startNode: any;
