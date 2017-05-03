@@ -170,7 +170,7 @@ var MentionDirective = (function () {
                             }
                             else {
                                 // This would go inside a setTimeout
-                                this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(function (response) {
+                                this.searchAsync(this.callbackFn, mention.substring(1) /*, window.getSelection()*/).subscribe(function (response) {
                                     _this.items = response;
                                     if (_this.items.length) {
                                         _this.showSearchList(nativeElement);
@@ -180,7 +180,7 @@ var MentionDirective = (function () {
                         }
                         else {
                             // This would go inside a setTimeout
-                            this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(function (response) {
+                            this.searchAsync(this.callbackFn, mention.substring(1) /*, window.getSelection()*/).subscribe(function (response) {
                                 _this.items = response;
                                 if (_this.items.length) {
                                     _this.showSearchList(nativeElement);
@@ -221,8 +221,8 @@ var MentionDirective = (function () {
             window.setTimeout(function () { return _this.searchList.resetScroll(); });
         }
     };
-    MentionDirective.prototype.searchAsync = function (callbackFn, token, currentSelection) {
-        return callbackFn(token, currentSelection);
+    MentionDirective.prototype.searchAsync = function (callbackFn, token /*, currentSelection: Selection*/) {
+        return callbackFn(token /*, currentSelection*/);
     };
     return MentionDirective;
 }());

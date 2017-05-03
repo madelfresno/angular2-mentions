@@ -187,7 +187,7 @@ export class MentionDirective {
                   }, 0);
                 } else {
                   // This would go inside a setTimeout
-                  this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
+                  this.searchAsync(this.callbackFn, mention.substring(1)/*, window.getSelection()*/).subscribe(
                     (response) => {
                       this.items = response;
                       if (this.items.length) {
@@ -198,7 +198,7 @@ export class MentionDirective {
                 }
             } else { 
               // This would go inside a setTimeout
-              this.searchAsync(this.callbackFn, mention.substring(1), window.getSelection()).subscribe(
+              this.searchAsync(this.callbackFn, mention.substring(1)/*, window.getSelection()*/).subscribe(
                 (response) => {
                   this.items = response;
                   if (this.items.length) {
@@ -242,7 +242,7 @@ export class MentionDirective {
     }
   }
 
-  searchAsync(callbackFn: Function, token: string, currentSelection: Selection): Observable<any> {
-    return callbackFn(token, currentSelection);
+  searchAsync(callbackFn: Function, token: string/*, currentSelection: Selection*/): Observable<any> {
+    return callbackFn(token/*, currentSelection*/);
   }
 }
