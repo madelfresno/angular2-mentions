@@ -118,7 +118,11 @@ var MentionDirective = (function () {
                             evt.initEvent("input", false, true);
                             nativeElement.dispatchEvent(evt);
                         }
-                        this.notifyMentionSelection.emit(this.searchList.activeItem);
+                        var data = {
+                            selectedMention: this.searchList.activeItem,
+                            currentSelection: window.getSelection()
+                        };
+                        this.notifyMentionSelection.emit(data);
                         this.startPos = -1;
                         return false;
                     }
@@ -158,9 +162,10 @@ var MentionDirective = (function () {
                             matches_1 = this.items.filter(function (e) { return e.name.match(regEx_1) != null; });
                             if (matches_1.length) {
                                 setTimeout(function () {
+                                    _this.items = matches_1;
                                     _this.showSearchList(nativeElement);
-                                    _this.searchList.items = matches_1;
-                                    _this.searchList.hidden = matches_1.length == 0 || pos <= _this.startPos;
+                                    /*this.searchList.items = matches;
+                                    this.searchList.hidden = matches.length == 0 || pos <= this.startPos;*/
                                 }, 0);
                             }
                             else {

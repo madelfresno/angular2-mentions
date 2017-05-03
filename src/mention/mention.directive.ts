@@ -135,7 +135,11 @@ export class MentionDirective {
               evt.initEvent("input", false, true);
               nativeElement.dispatchEvent(evt);
             }
-            this.notifyMentionSelection.emit(this.searchList.activeItem);
+            let data: any = {
+              selectedMention: this.searchList.activeItem,
+              currentSelection: window.getSelection()
+            };
+            this.notifyMentionSelection.emit(data);
             this.startPos = -1;
             return false;
           }
@@ -176,9 +180,10 @@ export class MentionDirective {
                 matches = this.items.filter(e => e.name.match(regEx) != null);
                 if (matches.length) {                  
                   setTimeout(() => {
+                    this.items = matches;
                     this.showSearchList(nativeElement);
-                    this.searchList.items = matches;
-                    this.searchList.hidden = matches.length == 0 || pos <= this.startPos;
+                    /*this.searchList.items = matches;
+                    this.searchList.hidden = matches.length == 0 || pos <= this.startPos;*/
                   }, 0);
                 } else {
                   // This would go inside a setTimeout
