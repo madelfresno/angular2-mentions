@@ -49,7 +49,7 @@ export class MentionDirective {
   @Input() minCharacters: number = 2;
 
   @Input() set mention(items: any){
-    this.items = items;
+    this.initialItems = items;
   }
 
   @Input() callbackFn: Function;

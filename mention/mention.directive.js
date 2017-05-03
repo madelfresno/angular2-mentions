@@ -41,7 +41,7 @@ var MentionDirective = (function () {
     }
     Object.defineProperty(MentionDirective.prototype, "mention", {
         set: function (items) {
-            this.items = items;
+            this.initialItems = items;
         },
         enumerable: true,
         configurable: true
