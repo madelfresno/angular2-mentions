@@ -170,7 +170,7 @@ var MentionDirective = (function () {
                             }
                             else {
                                 // This would go inside a setTimeout
-                                this.searchAsync(this.callbackFn, mention.substring(1) /*, window.getSelection()*/).subscribe(function (response) {
+                                this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(function (response) {
                                     _this.items = response;
                                     if (_this.items.length) {
                                         _this.showSearchList(nativeElement);
@@ -180,12 +180,25 @@ var MentionDirective = (function () {
                         }
                         else {
                             // This would go inside a setTimeout
-                            this.searchAsync(this.callbackFn, mention.substring(1) /*, window.getSelection()*/).subscribe(function (response) {
+                            this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(function (response) {
                                 _this.items = response;
                                 if (_this.items.length) {
                                     _this.showSearchList(nativeElement);
                                 }
                             });
+                        }
+                    }
+                    else {
+                        if (this.items) {
+                            var regEx_2 = new RegExp("^" + mention.substring(1), "i");
+                            var matches_2 = [];
+                            matches_2 = this.items.filter(function (e) { return e.name.match(regEx_2) != null; });
+                            if (matches_2.length) {
+                                setTimeout(function () {
+                                    _this.items = matches_2;
+                                    _this.showSearchList(nativeElement);
+                                }, 0);
+                            }
                         }
                     }
                 }
@@ -221,8 +234,8 @@ var MentionDirective = (function () {
             window.setTimeout(function () { return _this.searchList.resetScroll(); });
         }
     };
-    MentionDirective.prototype.searchAsync = function (callbackFn, token /*, currentSelection: Selection*/) {
-        return callbackFn(token /*, currentSelection*/);
+    MentionDirective.prototype.searchAsync = function (callbackFn, token) {
+        return callbackFn(token);
     };
     return MentionDirective;
 }());
