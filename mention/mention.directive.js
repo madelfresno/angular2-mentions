@@ -155,7 +155,7 @@ var MentionDirective = (function () {
                     if (event.keyCode !== KEY_BACKSPACE) {
                         mention += charPressed;
                     }
-                    if (mention.substring(0).length >= this.minCharacters) {
+                    if (mention.substring(1).length > 0 /*= this.minCharacters*/) {
                         // This would go inside a setTimeout
                         this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(function (response) {
                             _this.items = response;
@@ -166,24 +166,8 @@ var MentionDirective = (function () {
                     }
                     else {
                         if (this.initialItems) {
-                            var regEx_1 = new RegExp("^" + mention.substring(1), "i");
-                            var matches_1 = [];
-                            matches_1 = this.initialItems.filter(function (e) { return e.name.match(regEx_1) != null; });
-                            if (matches_1.length) {
-                                setTimeout(function () {
-                                    _this.items = matches_1;
-                                    _this.showSearchList(nativeElement);
-                                }, 0);
-                            }
-                            else {
-                                // This would go inside a setTimeout
-                                this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(function (response) {
-                                    _this.items = response;
-                                    if (_this.items.length) {
-                                        _this.showSearchList(nativeElement);
-                                    }
-                                });
-                            }
+                            this.items = this.initialItems;
+                            this.showSearchList(nativeElement);
                         }
                     }
                 }
