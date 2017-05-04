@@ -174,7 +174,7 @@ export class MentionDirective {
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
           }    
-          if (mention.substring(1).length > 0 /*= this.minCharacters*/) {  
+          if (mention.substring(1).length >= this.minCharacters) {  
             // This would go inside a setTimeout
             this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
               (response) => {
@@ -184,7 +184,7 @@ export class MentionDirective {
                 }                              
               }
             );
-          } else {
+          } else if (mention.substring(1).length == 0) {
             if (this.initialItems) {
               this.items = this.initialItems;
               this.showSearchList(nativeElement);
