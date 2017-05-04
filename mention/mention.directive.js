@@ -94,6 +94,12 @@ var MentionDirective = (function () {
             this.startPos = pos;
             this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
             this.stopSearch = false;
+            if (this.initialItems) {
+                setTimeout(function () {
+                    _this.items = _this.initialItems;
+                    _this.showSearchList(nativeElement);
+                }, 0);
+            }
         }
         else if (this.startPos >= 0 && !this.stopSearch) {
             if (!event.shiftKey &&
@@ -164,12 +170,8 @@ var MentionDirective = (function () {
                             }
                         });
                     }
-                    else if (mention.substring(1).length == 0) {
+                    else {
                         if (this.initialItems) {
-                            setTimeout(function () {
-                                _this.items = _this.initialItems;
-                                _this.showSearchList(nativeElement);
-                            }, 0);
                         }
                     }
                 }

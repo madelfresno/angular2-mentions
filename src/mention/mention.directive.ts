@@ -110,7 +110,13 @@ export class MentionDirective {
     if (charPressed == this.triggerChar) {
       this.startPos = pos;      
       this.startNode = (this.iframe ? this.iframe.contentWindow.getSelection() : window.getSelection()).anchorNode;
-      this.stopSearch = false;      
+      this.stopSearch = false;
+      if (this.initialItems) {
+        setTimeout(() => {
+          this.items = this.initialItems;
+          this.showSearchList(nativeElement);
+        }, 0);
+      }
     }
     else if (this.startPos >= 0 && !this.stopSearch) {
       if (!event.shiftKey &&
@@ -184,12 +190,8 @@ export class MentionDirective {
                 }                              
               }
             );
-          } else if (mention.substring(1).length == 0) {
-            if (this.initialItems) {
-              setTimeout(() => {
-                this.items = this.initialItems;
-                this.showSearchList(nativeElement);
-              }, 0);
+          } else {
+            if (this.initialItems) {              
               /*let regEx = new RegExp("^" + mention.substring(1), "i");
               let matches = [];
               matches = this.initialItems.filter(e => e.name.match(regEx) != null);
