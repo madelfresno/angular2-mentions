@@ -186,8 +186,10 @@ export class MentionDirective {
             );
           } else if (mention.substring(1).length == 0) {
             if (this.initialItems) {
-              this.items = this.initialItems;
-              this.showSearchList(nativeElement);
+              setTimeout(() => {
+                this.items = this.initialItems;
+                this.showSearchList(nativeElement);
+              }, 0);
               /*let regEx = new RegExp("^" + mention.substring(1), "i");
               let matches = [];
               matches = this.initialItems.filter(e => e.name.match(regEx) != null);

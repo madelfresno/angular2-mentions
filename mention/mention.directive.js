@@ -166,8 +166,10 @@ var MentionDirective = (function () {
                     }
                     else if (mention.substring(1).length == 0) {
                         if (this.initialItems) {
-                            this.items = this.initialItems;
-                            this.showSearchList(nativeElement);
+                            setTimeout(function () {
+                                _this.items = _this.initialItems;
+                                _this.showSearchList(nativeElement);
+                            }, 0);
                         }
                     }
                 }
