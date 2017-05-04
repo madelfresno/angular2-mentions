@@ -160,7 +160,7 @@ var MentionDirective = (function () {
                             var regEx_1 = new RegExp("^" + mention.substring(1), "i");
                             var matches_1 = [];
                             matches_1 = this.initialItems.filter(function (e) { return e.name.match(regEx_1) != null; });
-                            if (matches_1.length) {
+                            if (matches_1.length >= 10) {
                                 setTimeout(function () {
                                     _this.items = matches_1;
                                     _this.showSearchList(nativeElement);
@@ -193,11 +193,20 @@ var MentionDirective = (function () {
                             var regEx_2 = new RegExp("^" + mention.substring(1), "i");
                             var matches_2 = [];
                             matches_2 = this.initialItems.filter(function (e) { return e.name.match(regEx_2) != null; });
-                            if (matches_2.length) {
+                            if (matches_2.length >= 10) {
                                 setTimeout(function () {
                                     _this.items = matches_2;
                                     _this.showSearchList(nativeElement);
                                 }, 0);
+                            }
+                            else {
+                                // This would go inside a setTimeout
+                                this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(function (response) {
+                                    _this.items = response;
+                                    if (_this.items.length) {
+                                        _this.showSearchList(nativeElement);
+                                    }
+                                });
                             }
                         }
                     }
