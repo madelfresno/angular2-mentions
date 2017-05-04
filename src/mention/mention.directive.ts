@@ -174,61 +174,37 @@ export class MentionDirective {
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
           }    
-          if (mention.substring(1).length >= this.minCharacters) {     
-            if (this.initialItems) {
-                let regEx = new RegExp("^" + mention.substring(1), "i");
-                let matches = [];
-                matches = this.initialItems.filter(e => e.name.match(regEx) != null);
-                if (matches.length) {                  
-                  setTimeout(() => {
-                    this.items = matches;
-                    this.showSearchList(nativeElement);
-                    /*this.searchList.items = matches;
-                    this.searchList.hidden = matches.length == 0 || pos <= this.startPos;*/
-                  }, 0);
-                } else {
-                  // This would go inside a setTimeout
-                  this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
-                    (response) => {
-                      this.items = response;
-                      if (this.items.length) {
-                        this.showSearchList(nativeElement);
-                      }                              
-                    }
-                  );
-                }
-            } else { 
-              // This would go inside a setTimeout
-              this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
-                (response) => {
-                  this.items = response;
-                  if (this.items.length) {
-                    this.showSearchList(nativeElement);
-                  }                              
-                }
-              );
-            }
+          if (mention.substring(1).length >= this.minCharacters) {  
+            // This would go inside a setTimeout
+            this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
+              (response) => {
+                this.items = response;
+                if (this.items.length) {
+                  this.showSearchList(nativeElement);
+                }                              
+              }
+            );
           } else {
             if (this.initialItems) {
-                let regEx = new RegExp("^" + mention.substring(1), "i");
-                let matches = [];
-                matches = this.initialItems.filter(e => e.name.match(regEx) != null);
-                if (matches.length) {                  
-                  setTimeout(() => {
-                    this.items = matches;
-                    this.showSearchList(nativeElement);            
-                  }, 0);                
-                } else {
-                  // This would go inside a setTimeout
-                  this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
-                    (response) => {
-                      this.items = response;
-                      if (this.items.length) {
-                        this.showSearchList(nativeElement);
-                      }                              
-                    }
-                  );
-                }            
+              let regEx = new RegExp("^" + mention.substring(1), "i");
+              let matches = [];
+              matches = this.initialItems.filter(e => e.name.match(regEx) != null);
+              if (matches.length) {                  
+                setTimeout(() => {
+                  this.items = matches;
+                  this.showSearchList(nativeElement);            
+                }, 0);                
+              } else {
+                // This would go inside a setTimeout
+                this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
+                  (response) => {
+                    this.items = response;
+                    if (this.items.length) {
+                      this.showSearchList(nativeElement);
+                    }                              
+                  }
+                );
+              }            
             }
           }
         }
