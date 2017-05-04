@@ -174,7 +174,7 @@ export class MentionDirective {
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
           }    
-          if (mention.substring(1).length >= this.minCharacters) {  
+          if (mention.substring(0).length >= this.minCharacters) {  
             // This would go inside a setTimeout
             this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
               (response) => {
