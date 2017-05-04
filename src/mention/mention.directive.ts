@@ -180,7 +180,7 @@ export class MentionDirective {
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
           }    
-          if (mention.substring(1).length >= this.minCharacters) {  
+          if (mention.substring(1).length >= 0) {  
             // This would go inside a setTimeout
             this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
               (response) => {
@@ -191,7 +191,8 @@ export class MentionDirective {
               }
             );
           } else {
-            if (this.initialItems) {              
+            if (this.initialItems) {
+              
               /*let regEx = new RegExp("^" + mention.substring(1), "i");
               let matches = [];
               matches = this.initialItems.filter(e => e.name.match(regEx) != null);
