@@ -179,7 +179,7 @@ export class MentionDirective {
                 let regEx = new RegExp("^" + mention.substring(1), "i");
                 let matches = [];
                 matches = this.initialItems.filter(e => e.name.match(regEx) != null);
-                if (matches.length >= 10) {                  
+                if (matches.length) {                  
                   setTimeout(() => {
                     this.items = matches;
                     this.showSearchList(nativeElement);
@@ -213,7 +213,7 @@ export class MentionDirective {
                 let regEx = new RegExp("^" + mention.substring(1), "i");
                 let matches = [];
                 matches = this.initialItems.filter(e => e.name.match(regEx) != null);
-                if (matches.length >= 10) {                  
+                if (matches.length) {                  
                   setTimeout(() => {
                     this.items = matches;
                     this.showSearchList(nativeElement);            
