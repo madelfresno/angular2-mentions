@@ -150,7 +150,7 @@ export class MentionDirective {
             this.startPos = -1;
             return false;
           }
-          else if (event.keyCode === KEY_ESCAPE) {
+          else if (event.keyCode === KEY_ESCAPE || (KEY_BACKSPACE && pos == 0)) {
             this.stopEvent(event);
             this.searchList.hidden = true;
             this.stopSearch = true;
@@ -190,29 +190,6 @@ export class MentionDirective {
                 }                              
               }
             );
-          } else {
-            if (this.initialItems) {
-              
-              /*let regEx = new RegExp("^" + mention.substring(1), "i");
-              let matches = [];
-              matches = this.initialItems.filter(e => e.name.match(regEx) != null);
-              if (matches.length) {                  
-                setTimeout(() => {
-                  this.items = matches;
-                  this.showSearchList(nativeElement);            
-                }, 0);                
-              } else {
-                // This would go inside a setTimeout
-                this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
-                  (response) => {
-                    this.items = response;
-                    if (this.items.length) {
-                      this.showSearchList(nativeElement);
-                    }                              
-                  }
-                );
-              }*/            
-            }
           }
         }
       }
