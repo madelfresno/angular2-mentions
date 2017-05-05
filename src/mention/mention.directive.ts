@@ -150,7 +150,7 @@ export class MentionDirective {
             this.startPos = -1;
             return false;
           }
-          else if (event.keyCode === KEY_ESCAPE || (event.keyCode === KEY_BACKSPACE && pos == 0)) {
+          else if (event.keyCode === KEY_ESCAPE || (event.keyCode === KEY_BACKSPACE/* && pos == 0*/)) {
             this.stopEvent(event);
             this.searchList.hidden = true;
             this.stopSearch = true;
