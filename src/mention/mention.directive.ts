@@ -132,11 +132,11 @@ export class MentionDirective {
           this.searchList.hidden = true;
           pos--;
           if (this.initialItems) {
-          setTimeout(() => {
-            this.items = this.initialItems;
-            this.showSearchList(nativeElement);
-          }, 0);
-      }
+              setTimeout(() => {
+                this.items = this.initialItems;
+                this.showSearchList(nativeElement);
+              }, 1000);
+          }
         }
         else {          
           if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {

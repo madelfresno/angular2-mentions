@@ -118,7 +118,7 @@ var MentionDirective = (function () {
                         setTimeout(function () {
                             _this.items = _this.initialItems;
                             _this.showSearchList(nativeElement);
-                        }, 0);
+                        }, 1000);
                     }
                 }
                 else {
