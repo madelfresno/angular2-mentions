@@ -130,13 +130,7 @@ export class MentionDirective {
           pos--;
         } else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {          
           this.searchList.hidden = true;
-          pos--;
-          if (this.initialItems) {
-              setTimeout(() => {
-                this.items = this.initialItems;
-                this.showSearchList(nativeElement);
-              }, 1000);
-          }
+          pos--;          
         }
         else {          
           if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
