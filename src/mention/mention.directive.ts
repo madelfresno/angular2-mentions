@@ -125,21 +125,16 @@ export class MentionDirective {
           !event.ctrlKey &&
           pos > this.startPos
       ) {
-        if (event.keyCode === KEY_BACKSPACE && pos > 0 && (pos - 1) != this.startPos) {
+        if (event.keyCode === KEY_BACKSPACE && pos > 0/* && (pos - 1) != this.startPos*/) {
           this.searchList.hidden = this.stopSearch;
           pos--;
-        } else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {
+        }/* else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {
           this.stopEvent(event);          
           this.searchList.hidden = true;
           //this.stopSearch = true;
-          /*if (this.initialItems) {        
-            setTimeout(() => {    
-              this.items = this.initialItems;
-              this.showSearchList(nativeElement);
-            }, 100);          
-          }*/
+          
           return false;
-        }
+        }*/
         else {          
           if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
             this.stopEvent(event);
