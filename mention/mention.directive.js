@@ -173,6 +173,12 @@ var MentionDirective = (function () {
                 }
             }
         }
+        else if (event.keyCode === KEY_BACKSPACE) {
+            this.stopEvent(event);
+            this.searchList.hidden = true;
+            this.stopSearch = true;
+            return false;
+        }
     };
     MentionDirective.prototype.showSearchList = function (nativeElement) {
         var _this = this;

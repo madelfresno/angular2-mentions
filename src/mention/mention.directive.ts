@@ -193,6 +193,11 @@ export class MentionDirective {
           }
         }
       }
+    } else if (event.keyCode === KEY_BACKSPACE) {
+      this.stopEvent(event);
+      this.searchList.hidden = true;
+      this.stopSearch = true;
+      return false;
     }
   }
 
