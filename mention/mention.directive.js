@@ -112,8 +112,9 @@ var MentionDirective = (function () {
                     pos--;
                 }
                 else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {
-                    this.stopEvent(event);
+                    //this.stopEvent(event);          
                     this.searchList.hidden = true;
+                    pos--;
                 }
                 else {
                     if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
