@@ -128,6 +128,11 @@ export class MentionDirective {
         if (event.keyCode === KEY_BACKSPACE && pos > 0) {
           this.searchList.hidden = this.stopSearch;
           pos--;
+        } else if (event.keyCode === KEY_BACKSPACE && pos == this.startPos) {
+          this.stopEvent(event);
+          this.searchList.hidden = true;
+          this.stopSearch = true;
+          return false;
         }
         else {          
           if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
@@ -193,11 +198,6 @@ export class MentionDirective {
           }
         }
       }
-    } else if (event.keyCode === KEY_BACKSPACE) {
-      this.stopEvent(event);
-      this.searchList.hidden = true;
-      this.stopSearch = true;
-      return false;
     }
   }
 
