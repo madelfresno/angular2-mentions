@@ -111,7 +111,7 @@ var MentionDirective = (function () {
                     this.searchList.hidden = this.stopSearch;
                     pos--;
                 }
-                else if (pos == this.startPos) {
+                else if (pos - 1 == this.startPos) {
                     this.stopEvent(event);
                     this.searchList.hidden = true;
                     this.stopSearch = true;
