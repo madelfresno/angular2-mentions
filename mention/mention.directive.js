@@ -113,12 +113,15 @@ var MentionDirective = (function () {
                 }
                 else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {
                     this.stopEvent(event);
-                    this.searchList.hidden = true;
-                    //this.stopSearch = true;
+                    setTimeout(function () {
+                        _this.searchList.hidden = true;
+                    }, 0);
+                    this.stopSearch = true;
                     if (this.initialItems) {
                         this.items = this.initialItems;
                         this.showSearchList(nativeElement);
                     }
+                    return false;
                 }
                 else {
                     if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
