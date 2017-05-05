@@ -111,12 +111,6 @@ var MentionDirective = (function () {
                     this.searchList.hidden = this.stopSearch;
                     pos--;
                 }
-                else if (event.keyCode === KEY_BACKSPACE && pos <= 0) {
-                    this.stopEvent(event);
-                    this.searchList.hidden = true;
-                    this.stopSearch = true;
-                    return false;
-                }
                 else {
                     if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
                         this.stopEvent(event);
@@ -177,6 +171,12 @@ var MentionDirective = (function () {
                         });
                     }
                 }
+            }
+            else if (event.keyCode === KEY_BACKSPACE) {
+                this.stopEvent(event);
+                this.searchList.hidden = true;
+                this.stopSearch = true;
+                return false;
             }
         }
     };
