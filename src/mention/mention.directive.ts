@@ -86,7 +86,6 @@ export class MentionDirective {
   keyHandler(event: any, nativeElement: HTMLInputElement = this._element.nativeElement) {
     let val: string = getValue(nativeElement);
     let pos = getCaretPosition(nativeElement, this.iframe);    
-    console.log("pos", pos, "startPos", this.startPos);
     let charPressed = event.key;
     if (!charPressed) {
       let charCode = event.which || event.keyCode;

@@ -69,7 +69,6 @@ var MentionDirective = (function () {
         if (nativeElement === void 0) { nativeElement = this._element.nativeElement; }
         var val = mention_utils_1.getValue(nativeElement);
         var pos = mention_utils_1.getCaretPosition(nativeElement, this.iframe);
-        console.log("pos", pos, "startPos", this.startPos);
         var charPressed = event.key;
         if (!charPressed) {
             var charCode = event.which || event.keyCode;
