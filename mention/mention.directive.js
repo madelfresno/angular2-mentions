@@ -114,13 +114,13 @@ var MentionDirective = (function () {
                 else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {
                     this.stopEvent(event);
                     this.searchList.hidden = true;
-                    this.stopSearch = true;
-                    if (this.initialItems) {
-                        setTimeout(function () {
-                            _this.items = _this.initialItems;
-                            _this.showSearchList(nativeElement);
-                        }, 0);
-                    }
+                    //this.stopSearch = true;
+                    /*if (this.initialItems) {
+                      setTimeout(() => {
+                        this.items = this.initialItems;
+                        this.showSearchList(nativeElement);
+                      }, 100);
+                    }*/
                     return false;
                 }
                 else {

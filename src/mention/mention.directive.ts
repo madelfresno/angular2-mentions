@@ -131,13 +131,13 @@ export class MentionDirective {
         } else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {
           this.stopEvent(event);          
           this.searchList.hidden = true;
-          this.stopSearch = true;
-          if (this.initialItems) {        
+          //this.stopSearch = true;
+          /*if (this.initialItems) {        
             setTimeout(() => {    
               this.items = this.initialItems;
               this.showSearchList(nativeElement);
-            }, 0);          
-          }
+            }, 100);          
+          }*/
           return false;
         }
         else {          
