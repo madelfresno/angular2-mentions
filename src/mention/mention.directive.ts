@@ -129,16 +129,14 @@ export class MentionDirective {
           this.searchList.hidden = this.stopSearch;
           pos--;
         } else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {
-          //this.stopEvent(event);
+          this.stopEvent(event);
           this.searchList.hidden = true;
           //this.stopSearch = true;
-          if (this.initialItems) {
-            setTimeout(() => {
-              this.items = this.initialItems;
-              this.showSearchList(nativeElement);
-            }, 100);
+          if (this.initialItems) {            
+            this.items = this.initialItems;
+            this.showSearchList(nativeElement);
           }
-          return false;
+          //return false;
         }
         else {          
           if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
