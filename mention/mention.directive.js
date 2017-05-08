@@ -107,7 +107,6 @@ var MentionDirective = (function () {
                 !event.altKey &&
                 !event.ctrlKey &&
                 pos > this.startPos) {
-                console.log("pos", pos, "startPos", this.startPos);
                 if (event.keyCode === KEY_BACKSPACE && pos > 0 && (pos - 1) != this.startPos) {
                     this.searchList.hidden = this.stopSearch;
                     pos--;
