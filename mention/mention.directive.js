@@ -115,7 +115,7 @@ var MentionDirective = (function () {
                 else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {
                     this.stopEvent(event);
                     this.searchList.hidden = true;
-                    this.stopSearch = true;
+                    //this.stopSearch = true;
                     pos--;
                     this.startPos = -1;
                     return false;
