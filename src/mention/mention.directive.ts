@@ -135,6 +135,10 @@ export class MentionDirective {
           //this.stopSearch = true;
           pos--;
           this.startPos = -1;
+          setTimeout(() => {
+            this.items = this.initialItems;
+            this.showSearchList(nativeElement);
+          }, 0);
           return false;   
         }
         else {          

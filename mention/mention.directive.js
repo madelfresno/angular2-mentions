@@ -118,6 +118,10 @@ var MentionDirective = (function () {
                     //this.stopSearch = true;
                     pos--;
                     this.startPos = -1;
+                    setTimeout(function () {
+                        _this.items = _this.initialItems;
+                        _this.showSearchList(nativeElement);
+                    }, 0);
                     return false;
                 }
                 else {
