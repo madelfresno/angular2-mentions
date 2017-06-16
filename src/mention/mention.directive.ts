@@ -36,6 +36,7 @@ export class MentionDirective {
   searchList: MentionListComponent;
   stopSearch: boolean;
   iframe: any; // optional
+  timer: any;
   constructor(
     private _element: ElementRef,
     private _componentResolver: ComponentFactoryResolver,
@@ -186,14 +187,17 @@ export class MentionDirective {
           }    
           if (mention.substring(1).length > 0) {  
             // This would go inside a setTimeout
-            this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
-              (response) => {
-                this.items = response;
-                if (this.items.length) {
-                  this.showSearchList(nativeElement);
-                }                              
-              }
-            );
+            if (this.timer) clearTimeout(this.timer);
+            this.timer = setTimeout(() => {
+              this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(
+                (response) => {
+                  this.items = response;
+                  if (this.items.length) {
+                    this.showSearchList(nativeElement);
+                  }                              
+                }
+              );
+            }, 500);
           }
         }
       } 
