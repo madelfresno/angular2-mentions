@@ -162,18 +162,22 @@ var MentionDirective = (function () {
                     // update search          
                     // We need to get the current selection instead of the textContent of the nativeElement
                     val = window.getSelection().anchorNode.textContent;
-                    var mention = val.substring(this.startPos, pos);
+                    var mention_1 = val.substring(this.startPos, pos);
                     if (event.keyCode !== KEY_BACKSPACE) {
-                        mention += charPressed;
+                        mention_1 += charPressed;
                     }
-                    if (mention.substring(1).length > 0) {
+                    if (mention_1.substring(1).length > 0) {
                         // This would go inside a setTimeout
-                        this.searchAsync(this.callbackFn, mention.substring(1)).subscribe(function (response) {
-                            _this.items = response;
-                            if (_this.items.length) {
-                                _this.showSearchList(nativeElement);
-                            }
-                        });
+                        if (this.timer)
+                            clearTimeout(this.timer);
+                        this.timer = setTimeout(function () {
+                            _this.searchAsync(_this.callbackFn, mention_1.substring(1)).subscribe(function (response) {
+                                _this.items = response;
+                                if (_this.items.length) {
+                                    _this.showSearchList(nativeElement);
+                                }
+                            });
+                        }, 500);
                     }
                 }
             }

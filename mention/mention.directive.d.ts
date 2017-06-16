@@ -18,6 +18,7 @@ export declare class MentionDirective {
     searchList: MentionListComponent;
     stopSearch: boolean;
     iframe: any;
+    timer: any;
     constructor(_element: ElementRef, _componentResolver: ComponentFactoryResolver, _viewContainerRef: ViewContainerRef);
     triggerChar: string;
     asyncSearch: boolean;
