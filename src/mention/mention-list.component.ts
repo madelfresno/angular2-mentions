@@ -53,7 +53,8 @@ import { getCaretCoordinates } from './caret-coords';
     </ul>
     `,
     host: {
-      '[class.mention]': 'true'
+      '[class.mention]': 'true',
+      '[class.up]': "listPosition=='up'"
     }
 })
 export class MentionListComponent {
