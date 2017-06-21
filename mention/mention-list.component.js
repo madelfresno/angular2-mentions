@@ -54,7 +54,6 @@ var MentionListComponent = (function () {
         if (navigator.userAgent.indexOf('Mobile') > 0) {
             el.style.left = '15px';
             el.style.right = '15px';
-            el.style.top = coords.top + 'px';
         }
         else {
             el.style.left = coords.left + 'px';
