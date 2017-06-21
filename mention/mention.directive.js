@@ -189,6 +189,7 @@ var MentionDirective = (function () {
             var componentFactory = this._componentResolver.resolveComponentFactory(mention_list_component_1.MentionListComponent);
             var componentRef = this._viewContainerRef.createComponent(componentFactory);
             componentRef.instance.loadingImgPath = this.loadingImgPath;
+            componentRef.instance.listPosition = this.listPosition;
             this.searchList = componentRef.instance;
             this.searchList.items = this.items;
             if (this.searchList.items.length > 0) {
@@ -250,6 +251,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", String)
 ], MentionDirective.prototype, "loadingImgPath", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], MentionDirective.prototype, "listPosition", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)

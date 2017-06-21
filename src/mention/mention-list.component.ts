@@ -20,7 +20,7 @@ import { getCaretCoordinates } from './caret-coords';
       },      
     `,`
       [hidden] {
-        display: none !important;
+        display: none;
       }
     `],
     template: `
@@ -59,6 +59,7 @@ export class MentionListComponent {
   activeIndex: number = 0;
   hidden: boolean = true; 
   loadingImgPath: string;
+  listPosition: string;
   @ViewChild('list') list : ElementRef;
   @Output() itemClick = new EventEmitter();
   constructor(

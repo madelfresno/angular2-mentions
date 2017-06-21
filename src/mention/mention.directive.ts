@@ -60,8 +60,10 @@ export class MentionDirective {
   @Input() mentionSelect: (selection: string) => (string) = (selection: string) => selection;
 
   @Input() loadingImgPath: string;
+
+  @Input() listPosition: string;
   
-  @Output() notifyMentionSelection: EventEmitter<any> = new EventEmitter<any>();  
+  @Output() notifyMentionSelection: EventEmitter<any> = new EventEmitter<any>();
 
   setIframe(iframe: HTMLIFrameElement) {
     this.iframe = iframe;
@@ -209,6 +211,7 @@ export class MentionDirective {
       let componentFactory = this._componentResolver.resolveComponentFactory(MentionListComponent);
       let componentRef = this._viewContainerRef.createComponent(componentFactory);
       componentRef.instance.loadingImgPath = this.loadingImgPath;
+      componentRef.instance.listPosition = this.listPosition;
       this.searchList = componentRef.instance;      
       this.searchList.items = this.items;
       if (this.searchList.items.length > 0) {
