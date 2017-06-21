@@ -51,7 +51,10 @@ import { getCaretCoordinates } from './caret-coords';
           </a>
         </li>
     </ul>
-    `
+    `,
+    host: {
+      '[class.mention]': 'true'
+    }
 })
 export class MentionListComponent {
   items = [];
@@ -61,7 +64,7 @@ export class MentionListComponent {
   loadingImgPath: string;
   listPosition: string;
   @ViewChild('list') list : ElementRef;
-  @Output() itemClick = new EventEmitter();
+  @Output() itemClick = new EventEmitter();  
   constructor(
     private _element: ElementRef
   ) {}
