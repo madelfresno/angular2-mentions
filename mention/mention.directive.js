@@ -115,6 +115,8 @@ var MentionDirective = (function () {
                     this.searchList.hidden = true;
                     this.stopSearch = true;
                     pos = this.startPos;
+                    if (this.timer)
+                        clearTimeout(this.timer);
                 }
                 else {
                     if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
