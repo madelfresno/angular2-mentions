@@ -131,6 +131,7 @@ export class MentionDirective {
         if (event.keyCode === KEY_BACKSPACE && pos > 0 && (pos - 1) != this.startPos) {
           this.searchList.hidden = true;
           pos--;
+          if (this.timer) clearTimeout(this.timer);
         } else if (event.keyCode === KEY_BACKSPACE && (pos - 1) == this.startPos) {
           this.searchList.hidden = true;
           this.stopSearch = true;
