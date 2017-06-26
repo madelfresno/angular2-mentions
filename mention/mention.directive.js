@@ -196,13 +196,16 @@ var MentionDirective = (function () {
             this.searchList.items = this.items;
             if (this.searchList.items.length > 0) {
                 this.searchList.hidden = false;
+                this.searchList.position(nativeElement, this.iframe);
+                componentRef.instance['itemClick'].subscribe(function () {
+                    nativeElement.focus();
+                    var fakeKeydown = { "keyCode": KEY_ENTER, "wasClick": true };
+                    _this.keyHandler(fakeKeydown, nativeElement);
+                });
             }
-            this.searchList.position(nativeElement, this.iframe);
-            componentRef.instance['itemClick'].subscribe(function () {
-                nativeElement.focus();
-                var fakeKeydown = { "keyCode": KEY_ENTER, "wasClick": true };
-                _this.keyHandler(fakeKeydown, nativeElement);
-            });
+            else {
+                this.searchList.hidden = true;
+            }
         }
         else {
             this.searchList.activeIndex = 0;
@@ -210,9 +213,12 @@ var MentionDirective = (function () {
             this.searchList.items = this.items;
             if (this.searchList.items.length > 0) {
                 this.searchList.hidden = false;
+                this.searchList.position(nativeElement, this.iframe);
+                window.setTimeout(function () { return _this.searchList.resetScroll(); });
             }
-            this.searchList.position(nativeElement, this.iframe);
-            window.setTimeout(function () { return _this.searchList.resetScroll(); });
+            else {
+                this.searchList.hidden = true;
+            }
         }
     };
     MentionDirective.prototype.searchAsync = function (callbackFn, token) {
