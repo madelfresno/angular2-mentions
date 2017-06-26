@@ -197,7 +197,9 @@ export class MentionDirective {
                   this.items = response;
                   if (this.items.length) {
                     this.showSearchList(nativeElement);
-                  }                              
+                  } else {
+                    this.searchList.hidden = true;
+                  }                             
                 }
               );
             }, 500);
@@ -217,28 +219,23 @@ export class MentionDirective {
       this.searchList.items = this.items;
       if (this.searchList.items.length > 0) {
         this.searchList.hidden = false;
-      
-        this.searchList.position(nativeElement, this.iframe);
-        componentRef.instance['itemClick'].subscribe(() => {
-          nativeElement.focus();
-          let fakeKeydown = {"keyCode":KEY_ENTER,"wasClick":true};
-          this.keyHandler(fakeKeydown, nativeElement);
-        });
-      } else {
-        this.searchList.hidden = true;
       }
+      this.searchList.position(nativeElement, this.iframe);
+      componentRef.instance['itemClick'].subscribe(() => {
+        nativeElement.focus();
+        let fakeKeydown = {"keyCode":KEY_ENTER,"wasClick":true};
+        this.keyHandler(fakeKeydown, nativeElement);
+      });
     }
     else {
       this.searchList.activeIndex = 0;
       this.searchList.loadingImgPath = this.loadingImgPath;
       this.searchList.items = this.items;
       if (this.searchList.items.length > 0) {
-        this.searchList.hidden = false;      
-        this.searchList.position(nativeElement, this.iframe);
-        window.setTimeout(() => this.searchList.resetScroll());
-      } else {
-        this.searchList.hidden = true;
+        this.searchList.hidden = false;
       }
+      this.searchList.position(nativeElement, this.iframe);
+      window.setTimeout(() => this.searchList.resetScroll());
     }
   }
 
