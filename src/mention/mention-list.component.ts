@@ -97,15 +97,15 @@ export class MentionListComponent {
     }
     let el: HTMLElement = this._element.nativeElement;
     el.style.position = "absolute";
-    if (navigator.userAgent.indexOf('Mobile') > 0) {
+    /*if (navigator.userAgent.indexOf('Mobile') > 0) {
       el.style.left = '15px';
       el.style.right = '15px';      
       // We comment top to push up the mention list
       //el.style.top = coords.top + 'px';
-    } else {
+    } else {*/
       el.style.left = coords.left + 'px';      
       el.style.top = coords.top + 'px';
-    }    
+    //}    
   }
 
   get activeItem() {
